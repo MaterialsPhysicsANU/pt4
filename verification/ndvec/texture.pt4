@@ -1,0 +1,50 @@
+version  = 0.5.1;
+
+#define SIZE 128
+#define NOISE_SIZE 8
+#define RAD	 ((SIZE-NOISE_SIZE)/SIZE)
+
+size_x = SIZE;
+size_y = SIZE;
+size_z = SIZE;
+
+projection_integrand = ATTENUATION;
+
+noise_seed = 0;
+photon_flux = 4096E6; // photons/([0,1]^2)
+noise_quanisation = 0;
+noise_poisson = 0;
+noise_gaussian = 0;//per pixel
+
+unit_time_per_volume = 1;
+revolutions_per_unit_time = 1;
+projections_per_revolution = 1;
+projection_supersampling_ratio = 1;
+
+recon_subsets = 0;
+recon_itterations = 0;
+
+cubeoid cube0 = {
+	domain domain0 = {
+		.len = 1,
+		.val = {
+			.loc = {
+				.pos = {0,0.0,0,}	,
+				.sma = {RAD,RAD,RAD,}	,				
+				.axis = {0,0,1,}	,
+				.angle = 0			,
+			},
+			.atn = {
+				.blend = ADD,
+				.fill = FILL_NOISE,
+				.atnf = 1+0.5*s,
+				.loc = {
+					.pos = {0,0,0,},
+					.sma = {NOISE_SIZE/(SIZE*RAD),NOISE_SIZE/(SIZE*RAD),NOISE_SIZE/(SIZE*RAD),},
+					.axis = {0,0,1,},
+					.angle = 0,
+				},
+			},
+		},
+	},
+};

@@ -1,0 +1,71 @@
+version  = 0.5.4;
+
+#define SIZE 128
+#define RAD	 0.5
+
+size_x = SIZE;
+size_y = SIZE;
+size_z = SIZE;
+
+projection_integrand = INTENSITY;
+
+noise_seed = 0;
+photon_flux = 4096E6; // photons/([0,1]^2)
+noise_quanisation = 0;
+noise_poisson = 1;
+noise_gaussian = 25;//per pixel
+
+unit_time_per_volume = 1.0;
+revolutions_per_unit_time = 1;
+projections_per_revolution = 400;
+projection_supersampling_ratio = 3;
+
+cubeoid cube1 = {
+	domain domain0 = {
+		.len = 1,
+		.val = {
+			.loc = {
+				.pos = {0,0.0,0,}	,
+				.sma = {RAD,RAD,RAD,}	,
+				.axis = {0,0,1,}	,
+				.angle = 0			,				
+			},
+			.atn = {
+				.blend = ADD,
+				.fill = FILL_SOLID,
+				.atnf = 1,
+				.loc = {
+					.pos = {0,0,0,},
+					.sma = {1,1,1,},
+					.axis = {0,0,1,},
+					.angle = 0,
+				},
+			},
+		},
+	},
+};
+
+cylinder cylinder0 = {
+	domain domain0 = {
+		.len = 1,
+		.val = {
+			.loc = {
+				.pos = {0,0.0,0,}	,
+				.sma = {0.5*RAD,0.5*RAD,1.5*RAD,}	,
+				.axis = {0,0,1,}	,
+				.angle = 0			,				
+			},
+			.atn = {
+				.blend = REPLACE,
+				.fill = FILL_SOLID,
+				.atnf = 2,
+				.loc = {
+					.pos = {0,0,0,},
+					.sma = {1,1,1,},
+					.axis = {0,0,1,},
+					.angle = 0,
+				},
+			},
+		},
+	},
+};

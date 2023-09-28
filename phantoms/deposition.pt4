@@ -1,0 +1,114 @@
+version  = 0.5.4;
+
+#define SIZE 256
+#define T_END 1.0
+
+#define NPROJECTIONS 400.0
+#define REVOLUTIONS  4.0
+
+size_x = SIZE;
+size_y = SIZE;
+size_z = SIZE;
+
+projection_integrand = INTENSITY;
+
+noise_seed = 0;
+photon_flux = 4096E6; // photons/([0,1]^2)
+noise_quanisation = 0;
+noise_poisson = 1;
+noise_gaussian = 25;//per pixel
+
+unit_time_per_volume = 0.1;
+revolutions_per_unit_time = (NPROJECTIONS*REVOLUTIONS-1)/((NPROJECTIONS+1)*T_END);
+projections_per_revolution = NPROJECTIONS*(NPROJECTIONS+1)/(NPROJECTIONS*REVOLUTIONS-1);
+projection_supersampling_ratio = 3;
+
+#define DENDRITE 															 \
+						"var ix:= x;										"\
+						"var iy:= y;										"\
+						"var itrst := 50;									"\
+						"var itr := itrst;									"\
+						"var tmp; 											"\
+						"while (ix*ix + iy*iy < 4 and itr > 1) {			"\
+						"	tmp := ix*ix - iy*iy;							"\
+						"	iy := 2*ix*iy + 1;								"\
+						"	ix := tmp; itr -= 1;							"\
+						"};													"\
+						"var c := (itrst-itr) > 20-10*pow(t+0.1,0.3)+0.2;	"\
+						"c													"\
+
+elipsoid d1  = {
+	domain domain0 = {
+		.len = T_END ,
+		.val = {
+			.loc = {
+				.pos = {0,0,0},
+				.sma = {0.7,0.7,0.01+0.005*t,},
+				.axis = {0,0,1,},
+				.angle = 0.0,
+			},
+			.atn = {
+				.blend = MASK,
+				.fill = FILL_SOLID,
+				.atnf = DENDRITE,
+				.loc = {
+					.pos = {0.0,0,0,},
+					.sma = {1,1,1,},
+					.axis = {0.0,0.0,1,},
+					.angle = 0,
+				},
+			},
+		},
+	},
+};
+
+elipsoid d2  = {
+	domain domain0 = {
+		.len = T_END ,
+		.val = {
+			.loc = {
+				.pos = {0,0,0},
+				.sma = {0.3,0.7,0.01+0.005*t,},
+				.axis = {-0.8,0.3,0.13,},
+				.angle = 1.45,
+			},
+			.atn = {
+				.blend = MASK,
+				.fill = FILL_SOLID,
+				.atnf = DENDRITE,
+				.loc = {
+					.pos = {0.0,0,0,},
+					.sma = {1,1,1,},
+					.axis = {0.0,0.0,1,},
+					.angle = 0,
+				},
+			},
+		},
+	},
+};
+
+elipsoid d3  = {
+	domain domain0 = {
+		.len = T_END ,
+		.val = {
+			.loc = {
+				.pos = {0,0,0},
+				.sma = {0.5,0.5,0.01+0.005*t,},
+				.axis = {1.3,0.78,0.3,},
+				.angle = 1.3,
+			},
+			.atn = {
+				.blend = MASK,
+				.fill = FILL_SOLID,
+				.atnf = DENDRITE,
+				.loc = {
+					.pos = {0.0,0,0,},
+					.sma = {1,1,1,},
+					.axis = {0.0,0.0,1,},
+					.angle = 0,
+				},
+			},
+		},
+	},
+};
+

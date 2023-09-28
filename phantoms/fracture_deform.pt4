@@ -1,0 +1,97 @@
+version  = 0.5.4;
+
+#define SIZE 256
+#define T_END 2.0
+
+#define NPROJECTIONS 400.0
+#define REVOLUTIONS  4.0
+
+
+size_x = SIZE;
+size_y = SIZE;
+size_z = SIZE;
+
+projection_integrand = INTENSITY;
+
+noise_seed = 0;
+photon_flux = 4096E6; // photons/([0,1]^2)
+noise_quanisation = 0;
+noise_poisson = 1;
+noise_gaussian = 25;//per pixel
+
+unit_time_per_volume = 0.1;
+revolutions_per_unit_time = (NPROJECTIONS*REVOLUTIONS-1)/((NPROJECTIONS+1)*T_END);
+projections_per_revolution = NPROJECTIONS*(NPROJECTIONS+1)/(NPROJECTIONS*REVOLUTIONS-1);
+projection_supersampling_ratio = 3;
+
+cylinder top = {
+	domain wait = {
+		.len = 1,
+		.val = {
+			.loc = {
+				.pos = {0.0,0.0,0.4+0.02*t,}	,
+				.sma = {0.6-0.01*t,0.6-0.01*t,0.4+0.02*t,}	,
+				.axis = {0,0,1,}	,
+				.angle = 0			,
+			},
+			.atn = {
+				.blend = ADD,
+				.fill = FILL_NOISE,
+				.atnf = 1+0.2*s,
+				.loc = {
+					.pos = {0,0,-5.0,},
+					.sma = {0.1,0.1,0.1,},
+					.axis = {0.1,-0.4,1.3,},
+					.angle = 3.1,
+				},
+			},
+		},
+	},
+	domain split = {
+		.len = 1,
+		.val = {
+			.loc = {
+				.pos = {0.0,0.0,0.42+0.1*dt*dt,}	,
+				.sma = {0.59,0.59,0.42,}	,
+				.axis = {0,0,1,}	,
+				.angle = 0			,
+			},
+		},
+	},
+};
+
+cylinder bottom = {
+	domain wait = {
+		.len = 1,
+		.val = {
+			.loc = {
+				.pos = {0.0,0.0,-0.4-0.02*t,}	,
+				.sma = {0.6-0.01*t,0.6-0.01*t,0.4+0.02*t,}	,
+				.axis = {0,0,1,}	,
+				.angle = 0			,
+			},
+			.atn = {
+				.blend = ADD,
+				.fill = FILL_NOISE,
+				.atnf = 1+0.2*s,
+				.loc = {
+					.pos = {0,0,5.0,},
+					.sma = {0.1,0.1,0.1,},
+					.axis = {0.1,-0.4,1.3,},
+					.angle = 3.1,
+				},
+			},
+		},
+	},
+	domain split = {
+		.len = 1,
+		.val = {
+			.loc = {
+				.pos = {0.0,0.0,-0.42-0.1*dt*dt,}	,
+				.sma = {0.59,0.59,0.42,}	,
+				.axis = {0,0,1,}	,
+				.angle = 0			,
+			},
+		},
+	},
+};

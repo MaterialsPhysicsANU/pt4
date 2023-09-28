@@ -1,0 +1,449 @@
+version  = 0.5.4;
+
+#define SIZE 256
+#define T_END 0.5
+
+#define NPROJECTIONS 400.0
+#define REVOLUTIONS  4.0
+
+size_x = SIZE;
+size_y = SIZE;
+size_z = SIZE;
+
+projection_integrand = INTENSITY;
+
+noise_seed = 0;
+photon_flux = 4096E6; // photons/([0,1]^2)
+noise_quanisation = 0;
+noise_poisson = 1;
+noise_gaussian = 25;//per pixel
+
+unit_time_per_volume = 0.1;
+revolutions_per_unit_time = (NPROJECTIONS*REVOLUTIONS-1)/((NPROJECTIONS+1)*T_END);
+projections_per_revolution = NPROJECTIONS*(NPROJECTIONS+1)/(NPROJECTIONS*REVOLUTIONS-1);
+projection_supersampling_ratio = 3;
+
+elipsoid sphere0 = {
+    domain domain0 = {
+        .len = T_END,
+        .val = {
+            .loc = {
+                .pos = {0.156+0.05123*t,-0.368+0.0124*t,.684-0.0478*t,},
+                .sma = {0.05,0.05,0.05,},
+                .axis = {0,0,1,},
+                .angle = 0,
+            },
+            .atn = {
+                .blend = ADD,
+                .fill = FILL_SOLID,
+                .atnf = 1,
+                .loc = {
+                    .pos = {0.0,0,0,},
+                    .sma = {1,1,1,},
+                    .axis = {0.0,0.0,1,},
+                    .angle = 0,
+                },
+            },
+        },
+    },
+};
+
+elipsoid sphere1 = {
+    domain domain0 = {
+        .len = T_END,
+        .val = {
+            .loc = {
+                .pos = {0.056+0.0145*t,0.358+0.0487*t,-.542+0.0784*t,},
+                .sma = {0.05,0.05,0.05,},
+                .axis = {0,0,1,},
+                .angle = 0,
+            },
+            .atn = {
+                .blend = ADD,
+                .fill = FILL_SOLID,
+                .atnf = 1,
+                .loc = {
+                    .pos = {0.0,0,0,},
+                    .sma = {1,1,1,},
+                    .axis = {0.0,0.0,1,},
+                    .angle = 0,
+                },
+            },
+        },
+    },
+};
+
+elipsoid sphere2 = {
+    domain domain0 = {
+        .len = T_END,
+        .val = {
+            .loc = {
+                .pos = {-0.601-0.0786*t,0.256+0.0241*t,0.045+0.0246*t,},
+                .sma = {0.05,0.05,0.05,},
+                .axis = {0,0,1,},
+                .angle = 0,
+            },
+            .atn = {
+                .blend = ADD,
+                .fill = FILL_SOLID,
+                .atnf = 1,
+                .loc = {
+                    .pos = {0.0,0,0,},
+                    .sma = {1,1,1,},
+                    .axis = {0.0,0.0,1,},
+                    .angle = 0,
+                },
+            },
+        },
+    },
+};
+
+elipsoid sphere2 = {
+    domain domain0 = {
+        .len = T_END,
+        .val = {
+            .loc = {
+                .pos = {-0.571-0.066*t,-0.448+0.091*t,-0.129+0.029*t,},
+                .sma = {0.05,0.05,0.05,},
+                .axis = {0,0,1,},
+                .angle = 0,
+            },
+            .atn = {
+                .blend = ADD,
+                .fill = FILL_SOLID,
+                .atnf = 1,
+                .loc = {
+                    .pos = {0.0,0,0,},
+                    .sma = {1,1,1,},
+                    .axis = {0.0,0.0,1,},
+                    .angle = 0,
+                },
+            },
+        },
+    },
+};
+
+elipsoid sphere3 = {
+    domain domain0 = {
+        .len = T_END,
+        .val = {
+            .loc = {
+                .pos = {0.305+0.018*t,-0.74+0.063*t,0.548-0.016*t,},
+                .sma = {0.05,0.05,0.05,},
+                .axis = {0,0,1,},
+                .angle = 0,
+            },
+            .atn = {
+                .blend = ADD,
+                .fill = FILL_SOLID,
+                .atnf = 1,
+                .loc = {
+                    .pos = {0.0,0,0,},
+                    .sma = {1,1,1,},
+                    .axis = {0.0,0.0,1,},
+                    .angle = 0,
+                },
+            },
+        },
+    },
+};
+
+elipsoid sphere4 = {
+    domain domain0 = {
+        .len = T_END,
+        .val = {
+            .loc = {
+                .pos = {0.322-0.066*t,-0.096+0.072*t,-0.069-0.077*t,},
+                .sma = {0.05,0.05,0.05,},
+                .axis = {0,0,1,},
+                .angle = 0,
+            },
+            .atn = {
+                .blend = ADD,
+                .fill = FILL_SOLID,
+                .atnf = 1,
+                .loc = {
+                    .pos = {0.0,0,0,},
+                    .sma = {1,1,1,},
+                    .axis = {0.0,0.0,1,},
+                    .angle = 0,
+                },
+            },
+        },
+    },
+};
+
+elipsoid sphere5 = {
+    domain domain0 = {
+        .len = T_END,
+        .val = {
+            .loc = {
+                .pos = {-0.791+0.003*t,0.471+0.043*t,0.406+0.052*t,},
+                .sma = {0.05,0.05,0.05,},
+                .axis = {0,0,1,},
+                .angle = 0,
+            },
+            .atn = {
+                .blend = ADD,
+                .fill = FILL_SOLID,
+                .atnf = 1,
+                .loc = {
+                    .pos = {0.0,0,0,},
+                    .sma = {1,1,1,},
+                    .axis = {0.0,0.0,1,},
+                    .angle = 0,
+                },
+            },
+        },
+    },
+};
+
+elipsoid sphere6 = {
+    domain domain0 = {
+        .len = T_END,
+        .val = {
+            .loc = {
+                .pos = {0.432-0.015*t,0.493-0.030*t,-0.344+0.089*t,},
+                .sma = {0.05,0.05,0.05,},
+                .axis = {0,0,1,},
+                .angle = 0,
+            },
+            .atn = {
+                .blend = ADD,
+                .fill = FILL_SOLID,
+                .atnf = 1,
+                .loc = {
+                    .pos = {0.0,0,0,},
+                    .sma = {1,1,1,},
+                    .axis = {0.0,0.0,1,},
+                    .angle = 0,
+                },
+            },
+        },
+    },
+};
+
+elipsoid sphere7 = {
+    domain domain0 = {
+        .len = T_END,
+        .val = {
+            .loc = {
+                .pos = {-0.553+0.050*t,0.289+0.056*t,-0.751-0.083*t,},
+                .sma = {0.05,0.05,0.05,},
+                .axis = {0,0,1,},
+                .angle = 0,
+            },
+            .atn = {
+                .blend = ADD,
+                .fill = FILL_SOLID,
+                .atnf = 1,
+                .loc = {
+                    .pos = {0.0,0,0,},
+                    .sma = {1,1,1,},
+                    .axis = {0.0,0.0,1,},
+                    .angle = 0,
+                },
+            },
+        },
+    },
+};
+
+elipsoid sphere8 = {
+    domain domain0 = {
+        .len = T_END,
+        .val = {
+            .loc = {
+                .pos = {-0.096+0.066*t,0.467-0.017*t,0.186+0.053*t,},
+                .sma = {0.05,0.05,0.05,},
+                .axis = {0,0,1,},
+                .angle = 0,
+            },
+            .atn = {
+                .blend = ADD,
+                .fill = FILL_SOLID,
+                .atnf = 1,
+                .loc = {
+                    .pos = {0.0,0,0,},
+                    .sma = {1,1,1,},
+                    .axis = {0.0,0.0,1,},
+                    .angle = 0,
+                },
+            },
+        },
+    },
+};
+
+elipsoid sphere9 = {
+    domain domain0 = {
+        .len = T_END,
+        .val = {
+            .loc = {
+                .pos = {0.566+0.047*t,-0.217+0.036*t,-0.208+0.004*t,},
+                .sma = {0.05,0.05,0.05,},
+                .axis = {0,0,1,},
+                .angle = 0,
+            },
+            .atn = {
+                .blend = ADD,
+                .fill = FILL_SOLID,
+                .atnf = 1,
+                .loc = {
+                    .pos = {0.0,0,0,},
+                    .sma = {1,1,1,},
+                    .axis = {0.0,0.0,1,},
+                    .angle = 0,
+                },
+            },
+        },
+    },
+};
+
+elipsoid sphere10 = {
+    domain domain0 = {
+        .len = T_END,
+        .val = {
+            .loc = {
+                .pos = {0.613-0.008*t,-0.192-0.011*t,0.68+0.097*t,},
+                .sma = {0.05,0.05,0.05,},
+                .axis = {0,0,1,},
+                .angle = 0,
+            },
+            .atn = {
+                .blend = ADD,
+                .fill = FILL_SOLID,
+                .atnf = 1,
+                .loc = {
+                    .pos = {0.0,0,0,},
+                    .sma = {1,1,1,},
+                    .axis = {0.0,0.0,1,},
+                    .angle = 0,
+                },
+            },
+        },
+    },
+};
+
+elipsoid sphere11 = {
+    domain domain0 = {
+        .len = T_END,
+        .val = {
+            .loc = {
+                .pos = {-0.396+0.071*t,0.751+0.008*t,-0.074-0.027*t,},
+                .sma = {0.05,0.05,0.05,},
+                .axis = {0,0,1,},
+                .angle = 0,
+            },
+            .atn = {
+                .blend = ADD,
+                .fill = FILL_SOLID,
+                .atnf = 1,
+                .loc = {
+                    .pos = {0.0,0,0,},
+                    .sma = {1,1,1,},
+                    .axis = {0.0,0.0,1,},
+                    .angle = 0,
+                },
+            },
+        },
+    },
+};
+
+elipsoid sphere12 = {
+    domain domain0 = {
+        .len = T_END,
+        .val = {
+            .loc = {
+                .pos = {-0.386+0.071*t,-0.426+0.069*t,0.123-0.023*t,},
+                .sma = {0.05,0.05,0.05,},
+                .axis = {0,0,1,},
+                .angle = 0,
+            },
+            .atn = {
+                .blend = ADD,
+                .fill = FILL_SOLID,
+                .atnf = 1,
+                .loc = {
+                    .pos = {0.0,0,0,},
+                    .sma = {1,1,1,},
+                    .axis = {0.0,0.0,1,},
+                    .angle = 0,
+                },
+            },
+        },
+    },
+};
+
+elipsoid sphere13 = {
+    domain domain0 = {
+        .len = T_END,
+        .val = {
+            .loc = {
+                .pos = {0.649+0.036*t,0.307+0.015*t,0.77+0.072*t,},
+                .sma = {0.05,0.05,0.05,},
+                .axis = {0,0,1,},
+                .angle = 0,
+            },
+            .atn = {
+                .blend = ADD,
+                .fill = FILL_SOLID,
+                .atnf = 1,
+                .loc = {
+                    .pos = {0.0,0,0,},
+                    .sma = {1,1,1,},
+                    .axis = {0.0,0.0,1,},
+                    .angle = 0,
+                },
+            },
+        },
+    },
+};
+
+elipsoid sphere14 = {
+    domain domain0 = {
+        .len = T_END,
+        .val = {
+            .loc = {
+                .pos = {0.07-0.014*t,-0.01-0.047*t,-0.058-0.085*t,},
+                .sma = {0.05,0.05,0.05,},
+                .axis = {0,0,1,},
+                .angle = 0,
+            },
+            .atn = {
+                .blend = ADD,
+                .fill = FILL_SOLID,
+                .atnf = 1,
+                .loc = {
+                    .pos = {0.0,0,0,},
+                    .sma = {1,1,1,},
+                    .axis = {0.0,0.0,1,},
+                    .angle = 0,
+                },
+            },
+        },
+    },
+};
+
+elipsoid sphere15 = {
+    domain domain0 = {
+        .len = T_END,
+        .val = {
+            .loc = {
+                .pos = {0.131+0.040*t,0.587-0.032*t,-0.271+0.021*t,},
+                .sma = {0.05,0.05,0.05,},
+                .axis = {0,0,1,},
+                .angle = 0,
+            },
+            .atn = {
+                .blend = ADD,
+                .fill = FILL_SOLID,
+                .atnf = 1,
+                .loc = {
+                    .pos = {0.0,0,0,},
+                    .sma = {1,1,1,},
+                    .axis = {0.0,0.0,1,},
+                    .angle = 0,
+                },
+            },
+        },
+    },
+};

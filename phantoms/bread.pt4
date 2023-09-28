@@ -1,0 +1,331 @@
+version  = 0.5.4;
+
+#define SIZE 256
+
+#define T_END 1.0
+
+#define NPROJECTIONS 400.0
+#define REVOLUTIONS  4.0
+
+size_x = SIZE;
+size_y = SIZE;
+size_z = SIZE;
+
+projection_integrand = INTENSITY;
+
+noise_seed = 0;
+photon_flux = 4096E6; // photons/([0,1]^2)
+noise_quanisation = 0;
+noise_poisson = 1;
+noise_gaussian = 25;//per pixel
+
+unit_time_per_volume = 0.1;
+revolutions_per_unit_time = (NPROJECTIONS*REVOLUTIONS-1)/((NPROJECTIONS+1)*T_END);
+projections_per_revolution = NPROJECTIONS*(NPROJECTIONS+1)/(NPROJECTIONS*REVOLUTIONS-1);
+projection_supersampling_ratio = 3;
+
+elipsoid sphere_noise_coarse = {
+	domain domain0 = {
+		.len = 1,
+		.val = {
+			.loc = {
+				.pos = {0,0.0,0,}	,
+				.sma = {0.5*(1+0.2*t),0.5*(1+0.2*t),0.7*(1+0.2*t),}	,
+				.axis = {0,0,1,}	,
+				.angle = 0			,
+			},
+			.atn = {
+				.blend = ADD,
+				.fill = FILL_NOISE,
+				.atnf = (1+0.1*s)/pow((1+0.2*t)\,3.0),//pow is for conservation of mass
+				.loc = {
+					.pos = {0.53,0,0,},
+					.sma = {0.1,0.1,0.1,},
+					.axis = {0.7,1.2,-0.7,},
+					.angle = 1.1,
+				},
+			},
+		},
+	},
+};
+
+elipsoid sphere_noise_fine = {
+	domain domain0 = {
+		.len = 1,
+		.val = {
+			.loc = {
+				.pos = {0,0.0,0,}	,
+				.sma = {0.5*(1+0.2*t),0.5*(1+0.2*t),0.7*(1+0.2*t),}	,
+				.axis = {0,0,1,}	,
+				.angle = 0			,
+			},
+			.atn = {
+				.blend = ADD,
+				.fill = FILL_NOISE,
+				.atnf = (0.2*s)/pow((1+0.2*t)\,3.0),//pow is for conservation of mass
+				.loc = {
+					.pos = {0,0,0,},
+					.sma = {0.02,0.02,0.02,},
+					.axis = {1.1,1.4,0.8,},
+					.angle = 2.1,
+				},
+			},
+		},
+	},
+};
+
+elipsoid void0 = {
+	domain domain0 = {
+		.len = 1,
+		.val = {
+			.loc = {
+				.pos = {0.2*(1+0.2*t),-0.1*(1+0.2*t),0.1*(1+0.2*t)},
+				.sma = {0.04*(1-cos(pi*dt)),0.04*(1-cos(pi*dt)),0.04*(1-cos(pi*dt))},
+				.axis = {0,0,1},
+				.angle = 0,
+			},
+			.atn = {
+				.blend = REPLACE,
+				.fill = FILL_SOLID,
+				.atnf = 0,
+				.loc = {
+					.pos = {0,0,0},
+					.sma = {1,1,1},
+					.axis = {0,0,1},
+					.angle = 0,
+				},
+			},
+		},
+	},
+};
+
+elipsoid void1 = {
+	domain domain0 = {
+		.len = 0.2,
+		.val = {
+			.loc = {
+				.pos = {0.13*(1+0.2*t),0.149*(1+0.2*t),-0.333*(1+0.2*t)},
+				.sma = {0,0,0},
+				.axis = {0,0,1},
+				.angle = 0,
+			},
+			.atn = {
+				.blend = REPLACE,
+				.fill = FILL_SOLID,
+				.atnf = 0,
+				.loc = {
+					.pos = {0,0,0},
+					.sma = {1,1,1},
+					.axis = {0,0,1},
+					.angle = 0,
+				},
+			},
+		},
+	},
+	domain domain1 = {
+		.len = 0.8,
+		.val = {
+			.loc = {
+				.sma = {0.02*(1-cos(pi*dt)),0.03*(1-cos(pi*dt)),0.03*(1-cos(pi*dt))},
+			},
+		},
+	},
+};
+
+elipsoid void2 = {
+	domain domain0 = {
+		.len = 0.1,
+		.val = {
+			.loc = {
+				.pos = {-0.245*(1+0.2*t),0.158*(1+0.2*t),0.045*(1+0.2*t)},
+				.sma = {0,0,0},
+				.axis = {0,0.45,1},
+				.angle = 0.343,
+			},
+			.atn = {
+				.blend = REPLACE,
+				.fill = FILL_SOLID,
+				.atnf = 0,
+				.loc = {
+					.pos = {0,0,0},
+					.sma = {1,1,1},
+					.axis = {0,0,1},
+					.angle = 0,
+				},
+			},
+		},
+	},
+	domain domain1 = {
+		.len = 0.9,
+		.val = {
+			.loc = {
+				.sma = {0.04*(1-cos(pi*dt)),0.02*(1-cos(pi*dt)),0.02*(1-cos(pi*dt))},
+			},
+		},
+	},
+};
+
+elipsoid void3 = {
+	domain domain0 = {
+		.len = 0.3,
+		.val = {
+			.loc = {
+				.pos = {0.156*(1+0.2*t),0.174*(1+0.2*t),0.252*(1+0.2*t)},
+				.sma = {0,0,0},
+				.axis = {1.25,0.36,-0.78},
+				.angle = 0.343,
+			},
+			.atn = {
+				.blend = REPLACE,
+				.fill = FILL_SOLID,
+				.atnf = 0,
+				.loc = {
+					.pos = {0,0,0},
+					.sma = {1,1,1},
+					.axis = {0,0,1},
+					.angle = 0,
+				},
+			},
+		},
+	},
+	domain domain1 = {
+		.len = 0.7,
+		.val = {
+			.loc = {
+				.sma = {0.05*(1-cos(pi*dt)),0.03*(1-cos(pi*dt)),0.06*(1-cos(pi*dt))},
+			},
+		},
+	},
+};
+
+elipsoid void4 = {
+	domain domain0 = {
+		.len = 0.3,
+		.val = {
+			.loc = {
+				.pos = {0.156*(1+0.2*t),0.174*(1+0.2*t),0.252*(1+0.2*t)},
+				.sma = {0,0,0},
+				.axis = {1.25,0.36,-0.78},
+				.angle = 0.343,
+			},
+			.atn = {
+				.blend = REPLACE,
+				.fill = FILL_SOLID,
+				.atnf = 0,
+				.loc = {
+					.pos = {0,0,0},
+					.sma = {1,1,1},
+					.axis = {0,0,1},
+					.angle = 0,
+				},
+			},
+		},
+	},
+	domain domain1 = {
+		.len = 0.7,
+		.val = {
+			.loc = {
+				.sma = {0.05*(1-cos(pi*dt)),0.03*(1-cos(pi*dt)),0.06*(1-cos(pi*dt))},
+			},
+		},
+	},
+};
+
+elipsoid void5 = {
+	domain domain0 = {
+		.len = 0.2,
+		.val = {
+			.loc = {
+				.pos = {-0.024*(1+0.2*t),-0.217*(1+0.2*t),0.306*(1+0.2*t)},
+				.sma = {0,0,0},
+				.axis = {0.784,-0.26,-1.45},
+				.angle = 3.0556,
+			},
+			.atn = {
+				.blend = REPLACE,
+				.fill = FILL_SOLID,
+				.atnf = 0,
+				.loc = {
+					.pos = {0,0,0},
+					.sma = {1,1,1},
+					.axis = {0,0,1},
+					.angle = 0,
+				},
+			},
+		},
+	},
+	domain domain1 = {
+		.len = 0.8,
+		.val = {
+			.loc = {
+				.sma = {0.04*(1-cos(pi*dt)),0.02*(1-cos(pi*dt)),0.03*(1-cos(pi*dt))},
+			},
+		},
+	},
+};
+
+elipsoid void6 = {
+	domain domain0 = {
+		.len = 0.1,
+		.val = {
+			.loc = {
+				.pos = {-0.18*(1+0.2*t),-0.123*(1+0.2*t),-0.247*(1+0.2*t)},
+				.sma = {0,0,0},
+				.axis = {-0.981,-0.045,0.744},
+				.angle = 2.045,
+			},
+			.atn = {
+				.blend = REPLACE,
+				.fill = FILL_SOLID,
+				.atnf = 0,
+				.loc = {
+					.pos = {0,0,0},
+					.sma = {1,1,1},
+					.axis = {0,0,1},
+					.angle = 0,
+				},
+			},
+		},
+	},
+	domain domain1 = {
+		.len = 0.9,
+		.val = {
+			.loc = {
+				.sma = {0.02*(1-cos(pi*dt)),0.02*(1-cos(pi*dt)),0.05*(1-cos(pi*dt))},
+			},
+		},
+	},
+};
+
+elipsoid void7 = {
+	domain domain0 = {
+		.len = 0.3,
+		.val = {
+			.loc = {
+				.pos = {-0.025*(1+0.2*t),0.047*(1+0.2*t),-0.095*(1+0.2*t)},
+				.sma = {0,0,0},
+				.axis = {0.578,1.45,-0.756},
+				.angle = 1.655,
+			},
+			.atn = {
+				.blend = REPLACE,
+				.fill = FILL_SOLID,
+				.atnf = 0,
+				.loc = {
+					.pos = {0,0,0},
+					.sma = {1,1,1},
+					.axis = {0,0,1},
+					.angle = 0,
+				},
+			},
+		},
+	},
+	domain domain1 = {
+		.len = 0.7,
+		.val = {
+			.loc = {
+				.sma = {0.05*(1-cos(pi*dt)),0.03*(1-cos(pi*dt)),0.04*(1-cos(pi*dt))},
+			},
+		},
+	},
+};

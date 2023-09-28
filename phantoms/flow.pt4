@@ -1,0 +1,50 @@
+version  = 0.5.4;
+
+#define SIZE 256
+#define RAD	 0.7
+#define T_END 1.0
+
+#define NPROJECTIONS 400.0
+#define REVOLUTIONS  4.0
+
+size_x = SIZE;
+size_y = SIZE;
+size_z = SIZE;
+
+projection_integrand = INTENSITY;
+
+noise_seed 			= 0;
+photon_flux 		= 4096E6; // photons/([0,1]^2)
+noise_quanisation 	= 0;
+noise_poisson 		= 0;
+noise_gaussian 		= 0;//per pixel
+
+unit_time_per_volume 			= 0.1;
+revolutions_per_unit_time = (NPROJECTIONS*REVOLUTIONS-1)/((NPROJECTIONS+1)*T_END);
+projections_per_revolution = NPROJECTIONS*(NPROJECTIONS+1)/(NPROJECTIONS*REVOLUTIONS-1);
+projection_supersampling_ratio 	= 1;
+
+cubeoid cube0 = {
+	domain domain0 = {
+		.len = 1,
+		.val = {
+			.loc = {
+				.pos = {0.0,0.0,0,}	,
+				.sma = {RAD,RAD,RAD,}	,				
+				.axis = {1,1,1,}	,
+				.angle = 0.5*t*t	,
+			},
+			.atn = {
+				.blend = ADD,
+				.fill = FILL_NOISE,
+				.atnf = 1+0.5*s,
+				.loc = {
+					.pos = {0.53,0,0,},
+					.sma = {0.3,0.3,0.3,},
+					.axis = {0.7,1.2,-0.7,},
+					.angle = 1.1,
+				},
+			},
+		},
+	},
+};
