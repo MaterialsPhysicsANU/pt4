@@ -1,0 +1,6 @@
+[submodule "lib/simplecpp"]
+	path = lib/simplecpp
+	url = git@github.com:danmar/simplecpp.git
+[submodule "lib/libtiff"]
+	path = lib/libtiff
+	url = https://gitlab.com/libtiff/libtiff
