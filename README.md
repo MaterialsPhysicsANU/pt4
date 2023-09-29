@@ -43,3 +43,5 @@ The program can be built using CMake. It is recommended to build the release ver
  cmake .. -DCMAKE_BUILD_TYPE=Release -G"Ninja"
  ninja
 ```
+
+For questions relating to pt4 please contact: [todo]@anu.edu.au
