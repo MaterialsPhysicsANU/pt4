@@ -44,4 +44,4 @@ The program can be built using CMake. It is recommended to build the release ver
  ninja
 ```
 
-For questions relating to pt4 please contact: andrew.kingston@anu.edu.au
+For questions relating to pt4 please contact: andrew.kingston@anu.edu.au, or u7121433@anu.edu.au
