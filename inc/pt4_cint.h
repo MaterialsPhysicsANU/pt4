@@ -1,24 +1,9 @@
 #ifndef PT4_CINT_H
 #define PT4_CINT_H
 
+#include "string_handle.h"
 #include "scan_spec.h"
 
-#ifdef __cplusplus
-extern "C" {
-#else
-typedef struct std__string std__string;
-#endif
-
-typedef std__string * string_handle;
-string_handle create_string(char*);
-string_handle create_quoted_string(char*);
-void push_back_quoted_string(string_handle p, char* s);
-void    free_string(string_handle);
-const char*    c_str(string_handle);
-
-#ifdef __cplusplus
-}
-#endif
 
 typedef string_handle string_handle_triplet[3];
 
@@ -127,13 +112,13 @@ void	set_unit_time_per_volume_pt4(pt4_handle, double);
 void	set_projection_integrand_pt4(pt4_handle, proj_type);
 void	set_noise_seed_pt4(pt4_handle, int);
 void	set_photon_flux_pt4(pt4_handle, double);
-void	set_noise_quanisation_pt4(pt4_handle, int);
+void	set_noise_quantisation_pt4(pt4_handle, int);
 void	set_noise_poisson_pt4(pt4_handle, int);
 void	set_noise_gaussian_pt4(pt4_handle, double);
 void	set_unit_time_per_volume_pt4(pt4_handle, double);
 void	set_revolutions_per_unit_time_pt4(pt4_handle, double);
 void	set_projections_per_revolution_pt4(pt4_handle, double);
-void	set_projection_supersampling_ratio_pt4(pt4_handle, int);
+void	set_projection_supersampling_ratio_pt4(pt4_handle, double);
 
 #ifdef __cplusplus
 }

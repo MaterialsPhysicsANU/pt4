@@ -42,6 +42,8 @@ constexpr inline T sq(const T val) {
     return val*val;
 }
 
+std::string operator/(const std::string& a, const std::string& b);
+
 class logger{
     public:
         print_mode level;

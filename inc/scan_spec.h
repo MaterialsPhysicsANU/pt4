@@ -1,6 +1,8 @@
 #ifndef SCAN_SPEC_H
 #define SCAN_SPEC_H
 
+#include "string_handle.h"
+
 #ifdef __cplusplus
     #include "util.h"
 #endif
@@ -20,13 +22,13 @@ struct scan_spec_t{
 
     int seed;
     double I0;//photon flux (photons/projection/[0,1]^2)
-    int noise_quanisation;//(bool)
+    int noise_quantisation;//(bool)
     int noise_poisson;//(bool)
     double noise_gaussian;//(stdev photons/pixel)
 
     double revolutions_per_unit_time;
     double projections_per_revolution;
-    unsigned int projection_supersampling_ratio;
+    double projection_supersampling_ratio;
 
 };
 

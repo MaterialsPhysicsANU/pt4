@@ -1,4 +1,4 @@
-version  = 0.5.4;
+version  = 0.5.6;
 
 #define SIZE 256
 #define T_END 0.5
@@ -14,7 +14,7 @@ projection_integrand = INTENSITY;
 
 noise_seed = 0;
 photon_flux = 4096E6; // photons/([0,1]^2)
-noise_quanisation = 0;
+noise_quantisation = 0;
 noise_poisson = 1;
 noise_gaussian = 25;//per pixel
 

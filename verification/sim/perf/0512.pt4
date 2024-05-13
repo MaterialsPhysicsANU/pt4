@@ -1,0 +1,11 @@
+version  = 0.5.6;
+
+#include "overlay/bread.pt4"
+
+#define SIZE 512
+
+size_x = SIZE;
+size_y = SIZE;
+size_z = SIZE;
+
+projections_per_revolution = SIZE*pi/2;

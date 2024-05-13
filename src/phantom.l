@@ -32,7 +32,7 @@ version atover(const char*);
 "ATTENUATION"							 {yylval.e_proj = ATTENUATION; return enum_proj;}
 "noise_seed"                             {return noise_seed_tk;}
 "photon_flux"                            {return photon_flux_tk;}
-"noise_quanisation"                      {return noise_quanisation_tk;}
+"noise_quantisation"                      {return noise_quantisation_tk;}
 "noise_poisson"                          {return noise_poisson_tk;}
 "noise_gaussian"                         {return noise_gaussian_tk;}
 "unit_time_per_volume"                  {return unit_time_per_volume_tk;}

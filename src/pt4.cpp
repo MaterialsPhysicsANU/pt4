@@ -204,13 +204,13 @@ extern "C"
     void	set_projection_integrand_pt4            (pt4_handle p, proj_type v){p->scan_spec.proj_int = v;}
     void	set_noise_seed_pt4                      (pt4_handle p, int v){p->scan_spec.seed = v;}
     void	set_photon_flux_pt4                     (pt4_handle p, double v){p->scan_spec.I0 = v;}
-    void	set_noise_quanisation_pt4               (pt4_handle p, int v){p->scan_spec.noise_quanisation = v;}
+    void	set_noise_quantisation_pt4               (pt4_handle p, int v){p->scan_spec.noise_quantisation = v;}
     void	set_noise_poisson_pt4                   (pt4_handle p, int v){p->scan_spec.noise_poisson = v;}
     void	set_noise_gaussian_pt4                  (pt4_handle p, double v){p->scan_spec.noise_gaussian = v;}
     void	set_unit_time_per_volume_pt4           (pt4_handle p, double v){p->vol_t_step = v;}
     void	set_revolutions_per_unit_time_pt4       (pt4_handle p, double v){p->scan_spec.revolutions_per_unit_time = v;}
     void	set_projections_per_revolution_pt4      (pt4_handle p, double v){p->scan_spec.projections_per_revolution = v;}
-    void	set_projection_supersampling_ratio_pt4  (pt4_handle p, int v){p->scan_spec.projection_supersampling_ratio = v;}
+    void	set_projection_supersampling_ratio_pt4  (pt4_handle p, double v){p->scan_spec.projection_supersampling_ratio = v;}
 }
 
 void pt4::push_back(lazy_primative p){

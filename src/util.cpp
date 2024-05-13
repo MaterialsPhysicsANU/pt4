@@ -12,6 +12,11 @@ double pi = std::numbers::pi_v<double>;
 logger out = logger(INF, std::cout);
 auto nullstream = std::ostream(nullptr);
 
+std::string operator/(const std::string& a, const std::string& b){
+    const std::string sep = "/";
+    return a + sep + b;
+}
+
 logger::logger(print_mode, std::ostream& output){
   printer = &output;
 }

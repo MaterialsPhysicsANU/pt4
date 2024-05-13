@@ -511,19 +511,51 @@ struct slice : ndvec<T, 2> {
         }
     }
 
+    // //subsamples a slice to a lower resolution
+    // slice<T> subsample(int scale) const{
+    //     std::array<size_t, 2> sub_size = (this->size);
+    //     if(scale == 1){return slice<T>(*this);}
+    //     sub_size /= (size_t)scale;
+
+    //     auto subf = slice<T>(sub_size, T(0));
+
+    //     for(size_t i = 0; i < this->size[0]; i++){
+    //     for(size_t j = 0; j < this->size[1]; j++){
+    //         subf[{i/scale,j/scale}] += (*this)[{i,j}];
+    //     }
+    //     }
+    //     return subf;
+    // }
+
     //subsamples a slice to a lower resolution
-    slice<T> subsample(int level) const{
-        std::array<size_t, 2> sub_size = (this->size);
-        if(level == 1){return slice<T>(*this);}
-        sub_size /= (size_t)level;
+    slice<T> subsample(double scale) const{
+        std::array<double, 2> sub_size = array_static_cast<double>(this->size);
+        if(scale == 1){return slice<T>(*this);}
+        sub_size /= scale;
 
-        auto subf = slice<T>(sub_size, T(0));
+        auto subf = slice<T>(array_static_cast<size_t>(sub_size), T(0));
+        double scalei = ((double)this->size[0])/(double)subf.size[0];
+        double scalej = ((double)this->size[1])/(double)subf.size[1];
 
-        for(size_t i = 0; i < this->size[0]; i++){
-        for(size_t j = 0; j < this->size[1]; j++){
-            subf[{i/level,j/level}] += (*this)[{i,j}];
+        for(size_t i = 0; i < subf.size[0]; i++){
+        for(size_t j = 0; j < subf.size[1]; j++){
+            double il = i*scalei;
+            double ih = (i+1)*scalei;
+            double jl = j*scalej;
+            double jh = (j+1)*scalej;
+
+            for(double ii = floor(il); ii < std::min((double)this->size[0],ceil(ih)); ii++){
+            for(double jj = floor(jl); jj < std::min((double)this->size[1],ceil(jh)); jj++){
+                double ix = (ii < il) ? std::min(ii+1.0-il, ih-il) : std::min(1.0, ih-ii);
+                double jx = (jj < jl) ? std::min(jj+1.0-jl, jh-jl) : std::min(1.0, jh-jj);
+
+                subf[{i,j}] += (*this)[{ii,jj}]*ix*jx;
+            }
+            }
+
         }
         }
+
         return subf;
     }
 

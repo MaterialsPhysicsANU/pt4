@@ -136,6 +136,22 @@ int slice2tiff(void){
     return 0;
 }
 
+int subsample(void){
+    slice<float> texture = tiff2slice<float>("../verification/ndvec/texture.tiff");
+
+    slice<float> dstexture = texture.subsample(1.3);
+    slice2tiff<float>("../verification/ndvec/dstexture.tiff", dstexture);
+
+    float texsum = texture.sum();
+    float dstexsum = dstexture.sum();
+
+    out.log(ERR) << texsum << ", " << dstexsum << std::endl;
+
+    if(texsum == dstexsum){return 0;}
+
+    return 1;
+}
+
 int main(int argc, char* argv[]){
 
 #if _OPENMP
@@ -154,6 +170,7 @@ int main(int argc, char* argv[]){
     if(arg == "gradient"){ return gradient();}
     if(arg == "convolve"){ return convolve();}
     if(arg == "slice2tiff"){ return slice2tiff();}
+    if(arg == "subsample"){ return subsample();}
 
     return -1;
 }

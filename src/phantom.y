@@ -67,7 +67,7 @@ pt4_handle parser_pt4_handle;
 %token projection_integrand_tk
 %token noise_seed_tk
 %token photon_flux_tk
-%token noise_quanisation_tk
+%token noise_quantisation_tk
 %token noise_poisson_tk
 %token noise_gaussian_tk
 %token unit_time_per_volume_tk
@@ -157,7 +157,7 @@ metadata : version_tk '=' num_ver {set_version_pt4(parser_pt4_handle, $3); asser
 		 | projection_integrand_tk '=' enum_proj {set_projection_integrand_pt4(parser_pt4_handle, $3);}
 		 | noise_seed_tk eq_expression {set_noise_seed_pt4(parser_pt4_handle, evaluate_conststring(c_str($2)));}
 		 | photon_flux_tk eq_expression {set_photon_flux_pt4(parser_pt4_handle, evaluate_conststring(c_str($2)));}
-		 | noise_quanisation_tk '=' num_int {set_noise_quanisation_pt4(parser_pt4_handle, $3);}
+		 | noise_quantisation_tk '=' num_int {set_noise_quantisation_pt4(parser_pt4_handle, $3);}
 		 | noise_poisson_tk '=' num_int {set_noise_poisson_pt4(parser_pt4_handle, $3);}
 		 | noise_gaussian_tk eq_expression {set_noise_gaussian_pt4(parser_pt4_handle, evaluate_conststring(c_str($2)));}
 		 | unit_time_per_volume_tk eq_expression {set_unit_time_per_volume_pt4(parser_pt4_handle, evaluate_conststring(c_str($2)));}

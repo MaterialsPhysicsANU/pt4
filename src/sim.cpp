@@ -63,7 +63,7 @@ int add_noise_projection(slice<float>& projection, const scan_spec_t& scan_spec,
                     }else{
                         sample_photons += photons;
                     }
-                    if(scan_spec.noise_quanisation){
+                    if(scan_spec.noise_quantisation){
                         sample_photons = std::round(sample_photons);
                     }
                     pv = sample_photons;
@@ -76,7 +76,7 @@ int add_noise_projection(slice<float>& projection, const scan_spec_t& scan_spec,
 }
 
 
-int project_pt4(slice<float>& projection, const pt4& pt4_0, double time, double angle, unsigned int samples){
+int project_pt4(slice<float>& projection, const pt4& pt4_0, const double time, const double angle, const unsigned int samples){
     #pragma omp parallel
 	{
 	location camera;
@@ -124,7 +124,7 @@ int project_pt4(slice<float>& projection, const pt4& pt4_0, double time, double 
     return 0;
 }
 
-void add_pt4_vol(volume<float> &vol, const pt4& pt4_0, int t_frame, const uint8_t msaa){
+void add_pt4_vol(volume<float> &vol, const pt4& pt4_0, const int t_frame, const uint8_t msaa){
     #pragma omp parallel
 	{
     const float voxel_volumei = 8.0/(vol.size[0]*vol.size[1]*vol.size[2]);//8 because [-1, 1]^3

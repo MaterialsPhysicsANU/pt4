@@ -4,10 +4,9 @@
 #include<vector>
 #include<array>
 #include<string>
-typedef std::string std__string;
 
+#include "string_handle.h"
 #include "scan_spec.h"
-
 #include "pt4_cint.h"
 #include "expression.h"
 
@@ -29,7 +28,7 @@ class pt4{
         size_t size[3];//xyz
         scan_spec_t scan_spec;
         version file_ver;
-        static inline const version code_ver = {0,5,4};
+        static inline const version code_ver = {0,5,6};
         
 
         void push_back(lazy_primative);

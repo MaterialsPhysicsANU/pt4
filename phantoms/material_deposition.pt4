@@ -1,10 +1,7 @@
-version  = 0.5.4;
+version  = 0.5.6;
 
 #define SIZE 256
 #define T_END 1.0
-
-#define NPROJECTIONS 400.0
-#define REVOLUTIONS  4.0
 
 size_x = SIZE;
 size_y = SIZE;
@@ -13,14 +10,14 @@ size_z = SIZE;
 projection_integrand = INTENSITY;
 
 noise_seed = 0;
-photon_flux = 4096E6; // photons/([0,1]^2)
-noise_quanisation = 0;
+photon_flux = 4096E6;
+noise_quantisation = 0;
 noise_poisson = 1;
-noise_gaussian = 25;//per pixel
+noise_gaussian = 25;
 
 unit_time_per_volume = 0.1;
-revolutions_per_unit_time = (NPROJECTIONS*REVOLUTIONS-1)/((NPROJECTIONS+1)*T_END);
-projections_per_revolution = NPROJECTIONS*(NPROJECTIONS+1)/(NPROJECTIONS*REVOLUTIONS-1);
+revolutions_per_unit_time = 2;
+projections_per_revolution = 400;
 projection_supersampling_ratio = 3;
 
 #define DENDRITE 															 \

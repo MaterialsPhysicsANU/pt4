@@ -87,7 +87,7 @@ int write_projections(const std::string& pt4_name, const pt4 pt4_0){
     const double total_time = pt4_0.t_length();
     const double projections_per_unit_time = pt4_0.scan_spec.revolutions_per_unit_time*pt4_0.scan_spec.projections_per_revolution;
     const int frames = total_time* projections_per_unit_time;
-    const int super_samp = pt4_0.scan_spec.projection_supersampling_ratio; 
+    const double super_samp = pt4_0.scan_spec.projection_supersampling_ratio; 
 
     int completed_frames = 0;
     #pragma omp parallel for
@@ -101,7 +101,7 @@ int write_projections(const std::string& pt4_name, const pt4 pt4_0){
         }
 
         if(pt4_0.size[0] != pt4_0.size[1]){out.log(ERR) << "different x,y dims not yet supported!\n"; exit(2);}
-        auto projection = slice<float>({pt4_0.size[0]*super_samp,pt4_0.size[2]*super_samp});
+        auto projection = slice<float>({ceil(pt4_0.size[0]*super_samp),ceil(pt4_0.size[2]*super_samp)});
 
         const double time  = frame/projections_per_unit_time;
         const double angle = 2.0f*pi*frame/pt4_0.scan_spec.projections_per_revolution;

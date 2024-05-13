@@ -14,7 +14,6 @@ void print_usage(std::ostream& err){
     err << "options:" << std::endl;
     err << "-v              generate volumes from .pt4" << std::endl;
     err << "-p              generate projections from .pt4" << std::endl;
-    err << "-i              ignore out of date projection date from .pt4" << std::endl;
 }
 
 struct arg_switches_t{

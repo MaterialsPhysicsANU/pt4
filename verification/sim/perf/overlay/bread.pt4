@@ -1,11 +1,6 @@
-version  = 0.5.4;
+version  = 0.5.6;
 
 #define SIZE 256
-
-#define T_END 1.0
-
-#define NPROJECTIONS 400.0
-#define REVOLUTIONS  4.0
 
 size_x = SIZE;
 size_y = SIZE;
@@ -15,13 +10,13 @@ projection_integrand = INTENSITY;
 
 noise_seed = 0;
 photon_flux = 4096E6; // photons/([0,1]^2)
-noise_quanisation = 0;
-noise_poisson = 1;
-noise_gaussian = 25;//per pixel
+noise_quantisation = 0;
+noise_poisson = 0;
+noise_gaussian = 0;//per pixel
 
-unit_time_per_volume = 0.1;
-revolutions_per_unit_time = (NPROJECTIONS*REVOLUTIONS-1)/((NPROJECTIONS+1)*T_END);
-projections_per_revolution = NPROJECTIONS*(NPROJECTIONS+1)/(NPROJECTIONS*REVOLUTIONS-1);
+unit_time_per_volume = 1.0;
+revolutions_per_unit_time = 1;
+projections_per_revolution = 402;
 projection_supersampling_ratio = 3;
 
 elipsoid sphere_noise_coarse = {
@@ -101,7 +96,7 @@ elipsoid void0 = {
 
 elipsoid void1 = {
 	domain domain0 = {
-		.len = 0.2,
+		.len = 0.0,
 		.val = {
 			.loc = {
 				.pos = {0.13*(1+0.2*t),0.149*(1+0.2*t),-0.333*(1+0.2*t)},
@@ -123,7 +118,7 @@ elipsoid void1 = {
 		},
 	},
 	domain domain1 = {
-		.len = 0.8,
+		.len = 1.0,
 		.val = {
 			.loc = {
 				.sma = {0.02*(1-cos(pi*dt)),0.03*(1-cos(pi*dt)),0.03*(1-cos(pi*dt))},
@@ -134,7 +129,7 @@ elipsoid void1 = {
 
 elipsoid void2 = {
 	domain domain0 = {
-		.len = 0.1,
+		.len = 0.0,
 		.val = {
 			.loc = {
 				.pos = {-0.245*(1+0.2*t),0.158*(1+0.2*t),0.045*(1+0.2*t)},
@@ -156,7 +151,7 @@ elipsoid void2 = {
 		},
 	},
 	domain domain1 = {
-		.len = 0.9,
+		.len = 1.0,
 		.val = {
 			.loc = {
 				.sma = {0.04*(1-cos(pi*dt)),0.02*(1-cos(pi*dt)),0.02*(1-cos(pi*dt))},
@@ -167,7 +162,7 @@ elipsoid void2 = {
 
 elipsoid void3 = {
 	domain domain0 = {
-		.len = 0.3,
+		.len = 0.0,
 		.val = {
 			.loc = {
 				.pos = {0.156*(1+0.2*t),0.174*(1+0.2*t),0.252*(1+0.2*t)},
@@ -189,7 +184,7 @@ elipsoid void3 = {
 		},
 	},
 	domain domain1 = {
-		.len = 0.7,
+		.len = 1.0,
 		.val = {
 			.loc = {
 				.sma = {0.05*(1-cos(pi*dt)),0.03*(1-cos(pi*dt)),0.06*(1-cos(pi*dt))},
@@ -200,7 +195,7 @@ elipsoid void3 = {
 
 elipsoid void4 = {
 	domain domain0 = {
-		.len = 0.3,
+		.len = 0.0,
 		.val = {
 			.loc = {
 				.pos = {0.156*(1+0.2*t),0.174*(1+0.2*t),0.252*(1+0.2*t)},
@@ -222,7 +217,7 @@ elipsoid void4 = {
 		},
 	},
 	domain domain1 = {
-		.len = 0.7,
+		.len = 1.0,
 		.val = {
 			.loc = {
 				.sma = {0.05*(1-cos(pi*dt)),0.03*(1-cos(pi*dt)),0.06*(1-cos(pi*dt))},
@@ -233,7 +228,7 @@ elipsoid void4 = {
 
 elipsoid void5 = {
 	domain domain0 = {
-		.len = 0.2,
+		.len = 0.0,
 		.val = {
 			.loc = {
 				.pos = {-0.024*(1+0.2*t),-0.217*(1+0.2*t),0.306*(1+0.2*t)},
@@ -255,7 +250,7 @@ elipsoid void5 = {
 		},
 	},
 	domain domain1 = {
-		.len = 0.8,
+		.len = 1.0,
 		.val = {
 			.loc = {
 				.sma = {0.04*(1-cos(pi*dt)),0.02*(1-cos(pi*dt)),0.03*(1-cos(pi*dt))},
@@ -266,7 +261,7 @@ elipsoid void5 = {
 
 elipsoid void6 = {
 	domain domain0 = {
-		.len = 0.1,
+		.len = 0.0,
 		.val = {
 			.loc = {
 				.pos = {-0.18*(1+0.2*t),-0.123*(1+0.2*t),-0.247*(1+0.2*t)},
@@ -288,7 +283,7 @@ elipsoid void6 = {
 		},
 	},
 	domain domain1 = {
-		.len = 0.9,
+		.len = 1.0,
 		.val = {
 			.loc = {
 				.sma = {0.02*(1-cos(pi*dt)),0.02*(1-cos(pi*dt)),0.05*(1-cos(pi*dt))},
@@ -299,7 +294,7 @@ elipsoid void6 = {
 
 elipsoid void7 = {
 	domain domain0 = {
-		.len = 0.3,
+		.len = 0.0,
 		.val = {
 			.loc = {
 				.pos = {-0.025*(1+0.2*t),0.047*(1+0.2*t),-0.095*(1+0.2*t)},
@@ -321,7 +316,7 @@ elipsoid void7 = {
 		},
 	},
 	domain domain1 = {
-		.len = 0.7,
+		.len = 1.0,
 		.val = {
 			.loc = {
 				.sma = {0.05*(1-cos(pi*dt)),0.03*(1-cos(pi*dt)),0.04*(1-cos(pi*dt))},
