@@ -1,4 +1,4 @@
-version  = 0.5.6;
+version  = 0.5.7;
 
 #define SIZE 256
 #define T_END 1.0
@@ -26,7 +26,7 @@ cylinder clamp = {
 		.val = {
 			.loc = {
 				.pos = {0,0,0},
-				.sma = {0.7,0.7,1.0,},
+				.scale = {0.7,0.7,1.0,},
 				.axis = {0,0,1,},
 				.angle = 0.0,
 			},
@@ -36,7 +36,7 @@ cylinder clamp = {
 				.atnf = 0.4,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -51,7 +51,7 @@ cylinder void = {
 		.val = {
 			.loc = {
 				.pos = {0,0,0},
-				.sma = {0.5,0.405-0.02*t,1.0,},
+				.scale = {0.5,0.405-0.02*t,1.0,},
 				.axis = {1,0,0,},
 				.angle = pi/2,
 			},
@@ -61,7 +61,7 @@ cylinder void = {
 				.atnf = 0,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -79,7 +79,7 @@ cylinder void = {
 				.atnf = 1+0.2*s,					\
 				.loc = {							\
 					.pos = {0.31,-20.3,0.123,},		\
-					.sma = {0.08,0.08,0.08,},		\
+					.scale = {0.08,0.08,0.08,},		\
 					.axis = {0.123,-0.342,0.234,},	\
 					.angle = 1.232,					\
 				},									\
@@ -91,7 +91,7 @@ cylinder sample = {
 		.val = {
 			.loc = {
 				.pos = {0,0,0},
-				.sma = {0.4,0.4,0.6,},
+				.scale = {0.4,0.4,0.6,},
 				.axis = {1,0,0,},
 				.angle = pi/2,
 			},
@@ -103,7 +103,7 @@ cylinder sample = {
 		.val = {
 			.loc = {
 				.pos = {0,0,0},
-				.sma = {0.43,SAMPZF1,0.6,},
+				.scale = {0.43,SAMPZF1,0.6,},
 				.axis = {1,0,0,},
 				.angle = pi/2,
 			},
@@ -114,7 +114,7 @@ cylinder sample = {
 		.val = {
 			.loc = {
 				.pos = {0,0,0},
-				.sma = {0.435+0.02*dt,SAMPZF2-0.02*dt,0.6,},
+				.scale = {0.435+0.02*dt,SAMPZF2-0.02*dt,0.6,},
 				.axis = {1,0,0,},
 				.angle = pi/2,
 			},
@@ -122,13 +122,13 @@ cylinder sample = {
 	},
 };
 
-elipsoid vert_frac = {
+ellipsoid vert_frac = {
 	domain domain0 = {
 		.len = 0.3*T_END,
 		.val = {
 			.loc = {
 				.pos = {0,0.1,0},
-				.sma = {0.01,SAMPZF1,2.0,},
+				.scale = {0.01,SAMPZF1,2.0,},
 				.axis = {1,0,0,},
 				.angle = pi/2,
 			},
@@ -138,7 +138,7 @@ elipsoid vert_frac = {
 				.atnf = 0,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -149,7 +149,7 @@ elipsoid vert_frac = {
 		.len = 0.7*T_END,
 		.val = {
 			.loc = {
-				.sma = {0.01+0.01*dt*dt,SAMPZF1*(1-dt)+(SAMPZF2-0.1)*dt,2.0,},
+				.scale = {0.01+0.01*dt*dt,SAMPZF1*(1-dt)+(SAMPZF2-0.1)*dt,2.0,},
 			},
 			.atn = {
 				.blend = REPLACE,
@@ -158,13 +158,13 @@ elipsoid vert_frac = {
 	},
 };
 
-elipsoid horz_frac = {
+ellipsoid horz_frac = {
 	domain domain0 = {
 		.len = 0.6*T_END,
 		.val = {
 			.loc = {
 				.pos = {0,0.0,0},
-				.sma = {0.01,0.5,1.0,},
+				.scale = {0.01,0.5,1.0,},
 				.axis = {0.644,-0.541,0.541,},
 				.angle = 1.996,
 			},
@@ -174,7 +174,7 @@ elipsoid horz_frac = {
 				.atnf = 0,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -191,13 +191,13 @@ elipsoid horz_frac = {
 	},
 };
 
-elipsoid sm1_frac = {
+ellipsoid sm1_frac = {
 	domain domain0 = {
 		.len = 0.4*T_END,
 		.val = {
 			.loc = {
 				.pos = {-0.21,0.34,0},
-				.sma = {0.01,0.8,0.2,},
+				.scale = {0.01,0.8,0.2,},
 				.axis = {0.164,-0.689,0.706,},
 				.angle = 0.0835,
 			},
@@ -207,7 +207,7 @@ elipsoid sm1_frac = {
 				.atnf = 0,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -224,13 +224,13 @@ elipsoid sm1_frac = {
 	},
 };
 
-elipsoid horz_fill = {
+ellipsoid horz_fill = {
 	domain domain0 = {
 		.len = 0.8*T_END,
 		.val = {
 			.loc = {
 				.pos = {0,0.0,0},
-				.sma = {0.02,0.05,0.6,},
+				.scale = {0.02,0.05,0.6,},
 				.axis = {0.644,-0.541,0.541,},
 				.angle = 1.996,
 			},
@@ -240,7 +240,7 @@ elipsoid horz_fill = {
 				.atnf = 0,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -251,7 +251,7 @@ elipsoid horz_fill = {
 		.len = 0.0,
 		.val = {
 			.loc = {
-				.sma = {0.02,0.05+0.03*dt,0.6,},
+				.scale = {0.02,0.05+0.03*dt,0.6,},
 			},
 			.atn = SAMPATN,
 		},
@@ -262,7 +262,7 @@ elipsoid horz_fill = {
 			.atn = {
 				.blend = REPLACE,
 				.loc = {
-					.sma =  {0.8,0.8,0.8,},
+					.scale =  {0.8,0.8,0.8,},
 				},
 			},
 		},

@@ -1,4 +1,4 @@
-version  = 0.5.6;
+version  = 0.5.7;
 
 #define SIZE 256
 #define T_END 0.5
@@ -23,13 +23,13 @@ revolutions_per_unit_time = (NPROJECTIONS*REVOLUTIONS-1)/((NPROJECTIONS+1)*T_END
 projections_per_revolution = NPROJECTIONS*(NPROJECTIONS+1)/(NPROJECTIONS*REVOLUTIONS-1);
 projection_supersampling_ratio = 3;
 
-elipsoid sphere_noise_coarse = {
+ellipsoid sphere_noise_coarse = {
 	domain domain0 = {
 		.len = T_END,
 		.val = {
 			.loc = {
 				.pos = {0,0.0,0,}	,
-				.sma = {0.7+0.1*t,0.7+0.1*t,0.7+0.1*t,}	,
+				.scale = {0.7+0.1*t,0.7+0.1*t,0.7+0.1*t,}	,
 				.axis = {0,0,1,}	,
 				.angle = 0			,
 			},
@@ -39,7 +39,7 @@ elipsoid sphere_noise_coarse = {
 				.atnf = (1+0.1*s)/pow(0.7+0.1*t\,3.0),//pow is for conservation of mass
 				.loc = {
 					.pos = {0.53,0,0,},
-					.sma = {0.1,0.1,0.1,},
+					.scale = {0.1,0.1,0.1,},
 					.axis = {0.7,1.2,-0.7,},
 					.angle = 1.1,
 				},
@@ -48,13 +48,13 @@ elipsoid sphere_noise_coarse = {
 	},
 };
 
-elipsoid sphere_noise_fine = {
+ellipsoid sphere_noise_fine = {
 	domain domain0 = {
 		.len = T_END,
 		.val = {
 			.loc = {
 				.pos = {0,0.0,0,}	,
-				.sma = {0.7+0.1*t,0.7+0.1*t,0.7+0.1*t,}	,
+				.scale = {0.7+0.1*t,0.7+0.1*t,0.7+0.1*t,}	,
 				.axis = {0,0,1,}	,
 				.angle = 0			,
 			},
@@ -64,7 +64,7 @@ elipsoid sphere_noise_fine = {
 				.atnf = (0.2*s)/pow(0.7+0.1*t\,3.0),//pow is for conservation of mass
 				.loc = {
 					.pos = {0,0,0,},
-					.sma = {0.02,0.02,0.02,},
+					.scale = {0.02,0.02,0.02,},
 					.axis = {1.1,1.4,0.8,},
 					.angle = 2.1,
 				},

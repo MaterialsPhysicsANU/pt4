@@ -8,7 +8,7 @@
 typedef string_handle string_handle_triplet[3];
 
 typedef enum{
-	ELIPSOID = 0,
+	ELLIPSOID = 0,
 	CYLINDER,
 	CUBEOID,
 } primative_type;
@@ -33,7 +33,7 @@ typedef enum{
 typedef struct{
 	int init;
 	string_handle_triplet pos;
-	string_handle_triplet sma;
+	string_handle_triplet scale;
 	string_handle_triplet axis;
 	string_handle angle;
 } lazy_location;
@@ -54,7 +54,7 @@ typedef struct{
 
 typedef union{
 	int temp;
-	// lazy_elipsoid_parameters loc;
+	// lazy_ellipsoid_parameters loc;
 	// lazy_cubeoid_parameters atn;
 } lazy_primitive_derived_parameters;
 

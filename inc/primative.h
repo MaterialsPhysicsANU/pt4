@@ -15,7 +15,7 @@ struct primative{
 
 std::unique_ptr<primative> primative_from_lazy(const lazy_primative& p, double t);
 
-struct elipsoid : public primative{
+struct ellipsoid : public primative{
     int inside(const std::array<double,3>&) const override;
 };
 

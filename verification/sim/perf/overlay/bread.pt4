@@ -1,4 +1,4 @@
-version  = 0.5.6;
+version  = 0.5.7;
 
 #define SIZE 256
 
@@ -19,13 +19,13 @@ revolutions_per_unit_time = 1;
 projections_per_revolution = 402;
 projection_supersampling_ratio = 3;
 
-elipsoid sphere_noise_coarse = {
+ellipsoid sphere_noise_coarse = {
 	domain domain0 = {
 		.len = 1,
 		.val = {
 			.loc = {
 				.pos = {0,0.0,0,}	,
-				.sma = {0.5*(1+0.2*t),0.5*(1+0.2*t),0.7*(1+0.2*t),}	,
+				.scale = {0.5*(1+0.2*t),0.5*(1+0.2*t),0.7*(1+0.2*t),}	,
 				.axis = {0,0,1,}	,
 				.angle = 0			,
 			},
@@ -35,7 +35,7 @@ elipsoid sphere_noise_coarse = {
 				.atnf = (1+0.1*s)/pow((1+0.2*t)\,3.0),//pow is for conservation of mass
 				.loc = {
 					.pos = {0.53,0,0,},
-					.sma = {0.1,0.1,0.1,},
+					.scale = {0.1,0.1,0.1,},
 					.axis = {0.7,1.2,-0.7,},
 					.angle = 1.1,
 				},
@@ -44,13 +44,13 @@ elipsoid sphere_noise_coarse = {
 	},
 };
 
-elipsoid sphere_noise_fine = {
+ellipsoid sphere_noise_fine = {
 	domain domain0 = {
 		.len = 1,
 		.val = {
 			.loc = {
 				.pos = {0,0.0,0,}	,
-				.sma = {0.5*(1+0.2*t),0.5*(1+0.2*t),0.7*(1+0.2*t),}	,
+				.scale = {0.5*(1+0.2*t),0.5*(1+0.2*t),0.7*(1+0.2*t),}	,
 				.axis = {0,0,1,}	,
 				.angle = 0			,
 			},
@@ -60,7 +60,7 @@ elipsoid sphere_noise_fine = {
 				.atnf = (0.2*s)/pow((1+0.2*t)\,3.0),//pow is for conservation of mass
 				.loc = {
 					.pos = {0,0,0,},
-					.sma = {0.02,0.02,0.02,},
+					.scale = {0.02,0.02,0.02,},
 					.axis = {1.1,1.4,0.8,},
 					.angle = 2.1,
 				},
@@ -69,13 +69,13 @@ elipsoid sphere_noise_fine = {
 	},
 };
 
-elipsoid void0 = {
+ellipsoid void0 = {
 	domain domain0 = {
 		.len = 1,
 		.val = {
 			.loc = {
 				.pos = {0.2*(1+0.2*t),-0.1*(1+0.2*t),0.1*(1+0.2*t)},
-				.sma = {0.04*(1-cos(pi*dt)),0.04*(1-cos(pi*dt)),0.04*(1-cos(pi*dt))},
+				.scale = {0.04*(1-cos(pi*dt)),0.04*(1-cos(pi*dt)),0.04*(1-cos(pi*dt))},
 				.axis = {0,0,1},
 				.angle = 0,
 			},
@@ -85,7 +85,7 @@ elipsoid void0 = {
 				.atnf = 0,
 				.loc = {
 					.pos = {0,0,0},
-					.sma = {1,1,1},
+					.scale = {1,1,1},
 					.axis = {0,0,1},
 					.angle = 0,
 				},
@@ -94,13 +94,13 @@ elipsoid void0 = {
 	},
 };
 
-elipsoid void1 = {
+ellipsoid void1 = {
 	domain domain0 = {
 		.len = 0.0,
 		.val = {
 			.loc = {
 				.pos = {0.13*(1+0.2*t),0.149*(1+0.2*t),-0.333*(1+0.2*t)},
-				.sma = {0,0,0},
+				.scale = {0,0,0},
 				.axis = {0,0,1},
 				.angle = 0,
 			},
@@ -110,7 +110,7 @@ elipsoid void1 = {
 				.atnf = 0,
 				.loc = {
 					.pos = {0,0,0},
-					.sma = {1,1,1},
+					.scale = {1,1,1},
 					.axis = {0,0,1},
 					.angle = 0,
 				},
@@ -121,19 +121,19 @@ elipsoid void1 = {
 		.len = 1.0,
 		.val = {
 			.loc = {
-				.sma = {0.02*(1-cos(pi*dt)),0.03*(1-cos(pi*dt)),0.03*(1-cos(pi*dt))},
+				.scale = {0.02*(1-cos(pi*dt)),0.03*(1-cos(pi*dt)),0.03*(1-cos(pi*dt))},
 			},
 		},
 	},
 };
 
-elipsoid void2 = {
+ellipsoid void2 = {
 	domain domain0 = {
 		.len = 0.0,
 		.val = {
 			.loc = {
 				.pos = {-0.245*(1+0.2*t),0.158*(1+0.2*t),0.045*(1+0.2*t)},
-				.sma = {0,0,0},
+				.scale = {0,0,0},
 				.axis = {0,0.45,1},
 				.angle = 0.343,
 			},
@@ -143,7 +143,7 @@ elipsoid void2 = {
 				.atnf = 0,
 				.loc = {
 					.pos = {0,0,0},
-					.sma = {1,1,1},
+					.scale = {1,1,1},
 					.axis = {0,0,1},
 					.angle = 0,
 				},
@@ -154,19 +154,19 @@ elipsoid void2 = {
 		.len = 1.0,
 		.val = {
 			.loc = {
-				.sma = {0.04*(1-cos(pi*dt)),0.02*(1-cos(pi*dt)),0.02*(1-cos(pi*dt))},
+				.scale = {0.04*(1-cos(pi*dt)),0.02*(1-cos(pi*dt)),0.02*(1-cos(pi*dt))},
 			},
 		},
 	},
 };
 
-elipsoid void3 = {
+ellipsoid void3 = {
 	domain domain0 = {
 		.len = 0.0,
 		.val = {
 			.loc = {
 				.pos = {0.156*(1+0.2*t),0.174*(1+0.2*t),0.252*(1+0.2*t)},
-				.sma = {0,0,0},
+				.scale = {0,0,0},
 				.axis = {1.25,0.36,-0.78},
 				.angle = 0.343,
 			},
@@ -176,7 +176,7 @@ elipsoid void3 = {
 				.atnf = 0,
 				.loc = {
 					.pos = {0,0,0},
-					.sma = {1,1,1},
+					.scale = {1,1,1},
 					.axis = {0,0,1},
 					.angle = 0,
 				},
@@ -187,19 +187,19 @@ elipsoid void3 = {
 		.len = 1.0,
 		.val = {
 			.loc = {
-				.sma = {0.05*(1-cos(pi*dt)),0.03*(1-cos(pi*dt)),0.06*(1-cos(pi*dt))},
+				.scale = {0.05*(1-cos(pi*dt)),0.03*(1-cos(pi*dt)),0.06*(1-cos(pi*dt))},
 			},
 		},
 	},
 };
 
-elipsoid void4 = {
+ellipsoid void4 = {
 	domain domain0 = {
 		.len = 0.0,
 		.val = {
 			.loc = {
 				.pos = {0.156*(1+0.2*t),0.174*(1+0.2*t),0.252*(1+0.2*t)},
-				.sma = {0,0,0},
+				.scale = {0,0,0},
 				.axis = {1.25,0.36,-0.78},
 				.angle = 0.343,
 			},
@@ -209,7 +209,7 @@ elipsoid void4 = {
 				.atnf = 0,
 				.loc = {
 					.pos = {0,0,0},
-					.sma = {1,1,1},
+					.scale = {1,1,1},
 					.axis = {0,0,1},
 					.angle = 0,
 				},
@@ -220,19 +220,19 @@ elipsoid void4 = {
 		.len = 1.0,
 		.val = {
 			.loc = {
-				.sma = {0.05*(1-cos(pi*dt)),0.03*(1-cos(pi*dt)),0.06*(1-cos(pi*dt))},
+				.scale = {0.05*(1-cos(pi*dt)),0.03*(1-cos(pi*dt)),0.06*(1-cos(pi*dt))},
 			},
 		},
 	},
 };
 
-elipsoid void5 = {
+ellipsoid void5 = {
 	domain domain0 = {
 		.len = 0.0,
 		.val = {
 			.loc = {
 				.pos = {-0.024*(1+0.2*t),-0.217*(1+0.2*t),0.306*(1+0.2*t)},
-				.sma = {0,0,0},
+				.scale = {0,0,0},
 				.axis = {0.784,-0.26,-1.45},
 				.angle = 3.0556,
 			},
@@ -242,7 +242,7 @@ elipsoid void5 = {
 				.atnf = 0,
 				.loc = {
 					.pos = {0,0,0},
-					.sma = {1,1,1},
+					.scale = {1,1,1},
 					.axis = {0,0,1},
 					.angle = 0,
 				},
@@ -253,19 +253,19 @@ elipsoid void5 = {
 		.len = 1.0,
 		.val = {
 			.loc = {
-				.sma = {0.04*(1-cos(pi*dt)),0.02*(1-cos(pi*dt)),0.03*(1-cos(pi*dt))},
+				.scale = {0.04*(1-cos(pi*dt)),0.02*(1-cos(pi*dt)),0.03*(1-cos(pi*dt))},
 			},
 		},
 	},
 };
 
-elipsoid void6 = {
+ellipsoid void6 = {
 	domain domain0 = {
 		.len = 0.0,
 		.val = {
 			.loc = {
 				.pos = {-0.18*(1+0.2*t),-0.123*(1+0.2*t),-0.247*(1+0.2*t)},
-				.sma = {0,0,0},
+				.scale = {0,0,0},
 				.axis = {-0.981,-0.045,0.744},
 				.angle = 2.045,
 			},
@@ -275,7 +275,7 @@ elipsoid void6 = {
 				.atnf = 0,
 				.loc = {
 					.pos = {0,0,0},
-					.sma = {1,1,1},
+					.scale = {1,1,1},
 					.axis = {0,0,1},
 					.angle = 0,
 				},
@@ -286,19 +286,19 @@ elipsoid void6 = {
 		.len = 1.0,
 		.val = {
 			.loc = {
-				.sma = {0.02*(1-cos(pi*dt)),0.02*(1-cos(pi*dt)),0.05*(1-cos(pi*dt))},
+				.scale = {0.02*(1-cos(pi*dt)),0.02*(1-cos(pi*dt)),0.05*(1-cos(pi*dt))},
 			},
 		},
 	},
 };
 
-elipsoid void7 = {
+ellipsoid void7 = {
 	domain domain0 = {
 		.len = 0.0,
 		.val = {
 			.loc = {
 				.pos = {-0.025*(1+0.2*t),0.047*(1+0.2*t),-0.095*(1+0.2*t)},
-				.sma = {0,0,0},
+				.scale = {0,0,0},
 				.axis = {0.578,1.45,-0.756},
 				.angle = 1.655,
 			},
@@ -308,7 +308,7 @@ elipsoid void7 = {
 				.atnf = 0,
 				.loc = {
 					.pos = {0,0,0},
-					.sma = {1,1,1},
+					.scale = {1,1,1},
 					.axis = {0,0,1},
 					.angle = 0,
 				},
@@ -319,7 +319,7 @@ elipsoid void7 = {
 		.len = 1.0,
 		.val = {
 			.loc = {
-				.sma = {0.05*(1-cos(pi*dt)),0.03*(1-cos(pi*dt)),0.04*(1-cos(pi*dt))},
+				.scale = {0.05*(1-cos(pi*dt)),0.03*(1-cos(pi*dt)),0.04*(1-cos(pi*dt))},
 			},
 		},
 	},

@@ -28,7 +28,7 @@ class pt4{
         size_t size[3];//xyz
         scan_spec_t scan_spec;
         version file_ver;
-        static inline const version code_ver = {0,5,6};
+        static inline const version code_ver = {0,5,7};
         
 
         void push_back(lazy_primative);
@@ -39,7 +39,7 @@ class pt4{
 
 struct location{
     std::array<double,3> pos;
-	std::array<double,3> sma;
+	std::array<double,3> scale;
 	std::array<double,3> axis;
 	double angle;
 

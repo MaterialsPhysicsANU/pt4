@@ -26,8 +26,8 @@ std::unique_ptr<primative> primative_from_lazy(const lazy_primative& p, double t
     std::unique_ptr<primative> prim_p;
     switch (p.type)
     {
-    case (ELIPSOID):
-        prim_p = std::make_unique<elipsoid>();
+    case (ELLIPSOID):
+        prim_p = std::make_unique<ellipsoid>();
         break;
     case (CYLINDER):
         prim_p = std::make_unique<cylinder>();
@@ -41,7 +41,7 @@ std::unique_ptr<primative> primative_from_lazy(const lazy_primative& p, double t
     return prim_p;
 }
 
-int elipsoid::inside(const std::array<double,3>& p) const{
+int ellipsoid::inside(const std::array<double,3>& p) const{
     return (mag_sq(p) <= 1.0);
 }
 

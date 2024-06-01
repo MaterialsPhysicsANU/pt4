@@ -34,3 +34,6 @@
 # Program Outputs
 *.nc
 *.tiff
+
+# Build Directories
+build

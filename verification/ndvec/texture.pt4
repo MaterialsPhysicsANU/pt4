@@ -1,4 +1,4 @@
-version  = 0.5.6;
+version  = 0.5.7;
 
 #define SIZE 128
 #define NOISE_SIZE 8
@@ -27,7 +27,7 @@ cubeoid cube0 = {
 		.val = {
 			.loc = {
 				.pos = {0,0.0,0,}	,
-				.sma = {RAD,RAD,RAD,}	,				
+				.scale = {RAD,RAD,RAD,}	,				
 				.axis = {0,0,1,}	,
 				.angle = 0			,
 			},
@@ -37,7 +37,7 @@ cubeoid cube0 = {
 				.atnf = 1+0.5*s,
 				.loc = {
 					.pos = {0,0,0,},
-					.sma = {NOISE_SIZE/(SIZE*RAD),NOISE_SIZE/(SIZE*RAD),NOISE_SIZE/(SIZE*RAD),},
+					.scale = {NOISE_SIZE/(SIZE*RAD),NOISE_SIZE/(SIZE*RAD),NOISE_SIZE/(SIZE*RAD),},
 					.axis = {0,0,1,},
 					.angle = 0,
 				},

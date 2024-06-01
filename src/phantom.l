@@ -39,7 +39,7 @@ version atover(const char*);
 "revolutions_per_unit_time"              {return revolutions_per_unit_time_tk;}
 "projections_per_revolution"             {return projections_per_revolution_tk;}
 "projection_supersampling_ratio"         {return projection_supersampling_ratio_tk;}
-"elipsoid"				                 {return elipsoid_tk;}
+"ellipsoid"				                 {return ellipsoid_tk;}
 "cylinder"				                 {return cylinder_tk;}
 "cubeoid"				                 {return cubeoid_tk;}
 ".loc"									 {return loc_tk;}
@@ -57,7 +57,7 @@ version atover(const char*);
 "FILL_NOISE"							 {yylval.e_fill = FILL_NOISE; return enum_fill;}
 ".atnf"									 {return atnf_tk;}
 ".pos"				                     {return pos_tk;}
-".sma"				                     {return sma_tk;}
+".scale"				                     {return scale_tk;}
 ".axis"				                     {return axis_tk;}
 ".angle"				                 {return angle_tk;}
 "domain"				                 {return domain_tk;}

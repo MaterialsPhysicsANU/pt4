@@ -75,7 +75,7 @@ pt4_handle parser_pt4_handle;
 %token projections_per_revolution_tk
 %token projection_supersampling_ratio_tk
 
-%token elipsoid_tk
+%token ellipsoid_tk
 %token cylinder_tk
 %token cubeoid_tk
 %token loc_tk
@@ -84,7 +84,7 @@ pt4_handle parser_pt4_handle;
 %token fill_tk
 %token atnf_tk
 %token pos_tk
-%token sma_tk
+%token scale_tk
 %token axis_tk
 %token angle_tk
 %token attenuation_tk
@@ -114,7 +114,7 @@ pt4_handle parser_pt4_handle;
 %type <str_trp> eq_expression_trp
 
 %type <str_trp> pos_option
-%type <str_trp> sma_option
+%type <str_trp> scale_option
 %type <str_trp> axis_option
 %type <str> angle_option
 
@@ -167,7 +167,7 @@ metadata : version_tk '=' num_ver {set_version_pt4(parser_pt4_handle, $3); asser
 		 ;
 
 
-primitive : elipsoid_tk {current_primative_tk = elipsoid_tk;} name '=' domain_list	{$$ = (lazy_primative){.type =  ELIPSOID, .domains_h = $5,};}
+primitive : ellipsoid_tk {current_primative_tk = ellipsoid_tk;} name '=' domain_list	{$$ = (lazy_primative){.type =  ELLIPSOID, .domains_h = $5,};}
 		  | cylinder_tk  {current_primative_tk = cylinder_tk;} name '=' domain_list	{$$ = (lazy_primative){.type =  CYLINDER, .domains_h = $5,};}
 		  | cubeoid_tk  {current_primative_tk = cubeoid_tk;} name '=' domain_list	{$$ = (lazy_primative){.type =  CUBEOID, .domains_h = $5,};}
 		  ;
@@ -193,21 +193,21 @@ domain_members : '{'
 				;
 
 /* this should be a union type eventually */
-eq_val_members : elipsoid_tk {swpr(0);} val_members_base {$$ = (lazy_primitive_parameters){.l_prim = $3};}
+eq_val_members : ellipsoid_tk {swpr(0);} val_members_base {$$ = (lazy_primitive_parameters){.l_prim = $3};}
 			   | cylinder_tk {swpr(0);} val_members_base  {$$ = (lazy_primitive_parameters){.l_prim = $3};}
 			   | cubeoid_tk {swpr(0);} val_members_base  {$$ = (lazy_primitive_parameters){.l_prim = $3};}
 			   ;
 
 
 loc_members : '{' 	pos_option 
-					sma_option
+					scale_option
 					axis_option
 					angle_option 
  
 					{$$ = (lazy_location){
 						.init = $2[0] && $2[1] && $2[2] && $3[0] && $3[1] && $3[2] && $4[0] && $4[1] && $4[2] && $5,
 						.pos =  {$2[0],$2[1],$2[2]},
-						.sma =  {$3[0],$3[1],$3[2]},
+						.scale =  {$3[0],$3[1],$3[2]},
 						.axis = {$4[0],$4[1],$4[2]},
 						.angle = $5,
 					};}
@@ -217,7 +217,7 @@ pos_option: pos_tk eq_expression_trp option_end	{memcpy($$,$2,sizeof(string_hand
 		  | 									{memcpy($$,string_handle_triplet_NULL,sizeof(string_handle_triplet));}
 		  ;
 
-sma_option: sma_tk eq_expression_trp option_end	{memcpy($$,$2,sizeof(string_handle_triplet));}
+scale_option: scale_tk eq_expression_trp option_end	{memcpy($$,$2,sizeof(string_handle_triplet));}
 		  | 									{memcpy($$,string_handle_triplet_NULL,sizeof(string_handle_triplet));}
 		  ;
 

@@ -22,20 +22,20 @@ std::array<double,3> location::inv_affine(const std::array<double,3>& p) const{
     //unrotate
     rotate(r,axis,-angle);
     //unscale
-    r = r/sma;
+    r = r/scale;
     return r;
 }
 
 location::location(void){
     pos = {0.0,0.0,0.0};
-    sma = {1.0,1.0,1.0};
+    scale = {1.0,1.0,1.0};
 	axis = {0.0,0.0,1.0};
 	angle = 0.0;
 }
 
 location::location(const lazy_location& l, expression_variables ev){
     pos = {evaluate_string(*l.pos[0],ev),evaluate_string(*l.pos[1],ev),evaluate_string(*l.pos[2],ev)};
-    sma = {evaluate_string(*l.sma[0],ev),evaluate_string(*l.sma[1],ev),evaluate_string(*l.sma[2],ev)};
+    scale = {evaluate_string(*l.scale[0],ev),evaluate_string(*l.scale[1],ev),evaluate_string(*l.scale[2],ev)};
 	axis = {evaluate_string(*l.axis[0],ev),evaluate_string(*l.axis[1],ev),evaluate_string(*l.axis[2],ev)};
 	angle = evaluate_string(*l.angle,ev);
 }
@@ -45,7 +45,7 @@ std::ostream& operator<<(std::ostream& os, const lazy_location& obj) {
     os << std::endl;
     os << "init: " << obj.init << std::endl;
     os << "pos: {" << *(obj.pos[0]) << "," << *(obj.pos[1]) << "," << *(obj.pos[2]) << ",}" << std::endl;
-    os << "sma: {" << *(obj.sma[0]) << "," << *(obj.sma[1]) << "," << *(obj.sma[2]) << ",}" << std::endl;
+    os << "scale: {" << *(obj.scale[0]) << "," << *(obj.scale[1]) << "," << *(obj.scale[2]) << ",}" << std::endl;
     os << "axis: {" << *(obj.axis[0]) << "," << *(obj.axis[1]) << "," << *(obj.axis[2]) << ",}" << std::endl;
     os << "angle: " << *(obj.angle) << std::endl;
     return os;
@@ -241,7 +241,7 @@ void fill_string_handle_triplet(string_handle_triplet& dst, string_handle_triple
 void fill_lazy_location(lazy_location& dst, lazy_location& src){
     if(!dst.init){
         fill_string_handle_triplet(dst.pos,src.pos);
-        fill_string_handle_triplet(dst.sma,src.sma);
+        fill_string_handle_triplet(dst.scale,src.scale);
         fill_string_handle_triplet(dst.axis,src.axis);
         fill_string_handle(dst.angle,src.angle);
         dst.init = 1;

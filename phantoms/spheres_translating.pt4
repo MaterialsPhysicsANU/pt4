@@ -1,4 +1,4 @@
-version  = 0.5.6;
+version  = 0.5.7;
 
 #define SIZE 256
 #define T_END 0.5
@@ -20,13 +20,13 @@ revolutions_per_unit_time = 2;
 projections_per_revolution = 200;
 projection_supersampling_ratio = 3;
 
-elipsoid sphere0 = {
+ellipsoid sphere0 = {
 	domain domain0 = {
 		.len = T_END,
 		.val = {
 			.loc = {
 				.pos = {0.156+0.05123*t,-0.368+0.0124*t,.684-0.0478*t,},
-				.sma = {0.05,0.05,0.05,},
+				.scale = {0.05,0.05,0.05,},
 				.axis = {0,0,1,},
 				.angle = 0,
 			},
@@ -36,7 +36,7 @@ elipsoid sphere0 = {
 				.atnf = 1,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -45,13 +45,13 @@ elipsoid sphere0 = {
 	},
 };
 
-elipsoid sphere1 = {
+ellipsoid sphere1 = {
 	domain domain0 = {
 		.len = T_END,
 		.val = {
 			.loc = {
 				.pos = {0.056+0.0145*t,0.358+0.0487*t,-.542+0.0784*t,},
-				.sma = {0.05,0.05,0.05,},
+				.scale = {0.05,0.05,0.05,},
 				.axis = {0,0,1,},
 				.angle = 0,
 			},
@@ -61,7 +61,7 @@ elipsoid sphere1 = {
 				.atnf = 1,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -70,13 +70,13 @@ elipsoid sphere1 = {
 	},
 };
 
-elipsoid sphere2 = {
+ellipsoid sphere2 = {
 	domain domain0 = {
 		.len = T_END,
 		.val = {
 			.loc = {
 				.pos = {-0.601-0.0786*t,0.256+0.0241*t,0.045+0.0246*t,},
-				.sma = {0.05,0.05,0.05,},
+				.scale = {0.05,0.05,0.05,},
 				.axis = {0,0,1,},
 				.angle = 0,
 			},
@@ -86,7 +86,7 @@ elipsoid sphere2 = {
 				.atnf = 1,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -95,13 +95,13 @@ elipsoid sphere2 = {
 	},
 };
 
-elipsoid sphere2 = {
+ellipsoid sphere3 = {
 	domain domain0 = {
 		.len = T_END,
 		.val = {
 			.loc = {
 				.pos = {-0.571-0.066*t,-0.448+0.091*t,-0.129+0.029*t,},
-				.sma = {0.05,0.05,0.05,},
+				.scale = {0.05,0.05,0.05,},
 				.axis = {0,0,1,},
 				.angle = 0,
 			},
@@ -111,7 +111,7 @@ elipsoid sphere2 = {
 				.atnf = 1,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -120,13 +120,13 @@ elipsoid sphere2 = {
 	},
 };
 
-elipsoid sphere3 = {
+ellipsoid sphere4 = {
 	domain domain0 = {
 		.len = T_END,
 		.val = {
 			.loc = {
 				.pos = {0.305+0.018*t,-0.74+0.063*t,0.548-0.016*t,},
-				.sma = {0.05,0.05,0.05,},
+				.scale = {0.05,0.05,0.05,},
 				.axis = {0,0,1,},
 				.angle = 0,
 			},
@@ -136,7 +136,7 @@ elipsoid sphere3 = {
 				.atnf = 1,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -145,13 +145,13 @@ elipsoid sphere3 = {
 	},
 };
 
-elipsoid sphere4 = {
+ellipsoid sphere5 = {
 	domain domain0 = {
 		.len = T_END,
 		.val = {
 			.loc = {
 				.pos = {0.322-0.066*t,-0.096+0.072*t,-0.069-0.077*t,},
-				.sma = {0.05,0.05,0.05,},
+				.scale = {0.05,0.05,0.05,},
 				.axis = {0,0,1,},
 				.angle = 0,
 			},
@@ -161,7 +161,7 @@ elipsoid sphere4 = {
 				.atnf = 1,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -170,13 +170,13 @@ elipsoid sphere4 = {
 	},
 };
 
-elipsoid sphere5 = {
+ellipsoid sphere6 = {
 	domain domain0 = {
 		.len = T_END,
 		.val = {
 			.loc = {
 				.pos = {-0.791+0.003*t,0.471+0.043*t,0.406+0.052*t,},
-				.sma = {0.05,0.05,0.05,},
+				.scale = {0.05,0.05,0.05,},
 				.axis = {0,0,1,},
 				.angle = 0,
 			},
@@ -186,7 +186,7 @@ elipsoid sphere5 = {
 				.atnf = 1,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -195,13 +195,13 @@ elipsoid sphere5 = {
 	},
 };
 
-elipsoid sphere6 = {
+ellipsoid sphere7 = {
 	domain domain0 = {
 		.len = T_END,
 		.val = {
 			.loc = {
 				.pos = {0.432-0.015*t,0.493-0.030*t,-0.344+0.089*t,},
-				.sma = {0.05,0.05,0.05,},
+				.scale = {0.05,0.05,0.05,},
 				.axis = {0,0,1,},
 				.angle = 0,
 			},
@@ -211,7 +211,7 @@ elipsoid sphere6 = {
 				.atnf = 1,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -220,13 +220,13 @@ elipsoid sphere6 = {
 	},
 };
 
-elipsoid sphere7 = {
+ellipsoid sphere8 = {
 	domain domain0 = {
 		.len = T_END,
 		.val = {
 			.loc = {
 				.pos = {-0.553+0.050*t,0.289+0.056*t,-0.751-0.083*t,},
-				.sma = {0.05,0.05,0.05,},
+				.scale = {0.05,0.05,0.05,},
 				.axis = {0,0,1,},
 				.angle = 0,
 			},
@@ -236,7 +236,7 @@ elipsoid sphere7 = {
 				.atnf = 1,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -245,13 +245,13 @@ elipsoid sphere7 = {
 	},
 };
 
-elipsoid sphere8 = {
+ellipsoid sphere9 = {
 	domain domain0 = {
 		.len = T_END,
 		.val = {
 			.loc = {
 				.pos = {-0.096+0.066*t,0.467-0.017*t,0.186+0.053*t,},
-				.sma = {0.05,0.05,0.05,},
+				.scale = {0.05,0.05,0.05,},
 				.axis = {0,0,1,},
 				.angle = 0,
 			},
@@ -261,7 +261,7 @@ elipsoid sphere8 = {
 				.atnf = 1,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -270,13 +270,13 @@ elipsoid sphere8 = {
 	},
 };
 
-elipsoid sphere9 = {
+ellipsoid sphere10 = {
 	domain domain0 = {
 		.len = T_END,
 		.val = {
 			.loc = {
 				.pos = {0.566+0.047*t,-0.217+0.036*t,-0.208+0.004*t,},
-				.sma = {0.05,0.05,0.05,},
+				.scale = {0.05,0.05,0.05,},
 				.axis = {0,0,1,},
 				.angle = 0,
 			},
@@ -286,7 +286,7 @@ elipsoid sphere9 = {
 				.atnf = 1,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -295,13 +295,13 @@ elipsoid sphere9 = {
 	},
 };
 
-elipsoid sphere10 = {
+ellipsoid sphere11 = {
 	domain domain0 = {
 		.len = T_END,
 		.val = {
 			.loc = {
 				.pos = {0.613-0.008*t,-0.192-0.011*t,0.68+0.097*t,},
-				.sma = {0.05,0.05,0.05,},
+				.scale = {0.05,0.05,0.05,},
 				.axis = {0,0,1,},
 				.angle = 0,
 			},
@@ -311,7 +311,7 @@ elipsoid sphere10 = {
 				.atnf = 1,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -320,13 +320,13 @@ elipsoid sphere10 = {
 	},
 };
 
-elipsoid sphere11 = {
+ellipsoid sphere12 = {
 	domain domain0 = {
 		.len = T_END,
 		.val = {
 			.loc = {
 				.pos = {-0.396+0.071*t,0.751+0.008*t,-0.074-0.027*t,},
-				.sma = {0.05,0.05,0.05,},
+				.scale = {0.05,0.05,0.05,},
 				.axis = {0,0,1,},
 				.angle = 0,
 			},
@@ -336,7 +336,7 @@ elipsoid sphere11 = {
 				.atnf = 1,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -345,13 +345,13 @@ elipsoid sphere11 = {
 	},
 };
 
-elipsoid sphere12 = {
+ellipsoid sphere13 = {
 	domain domain0 = {
 		.len = T_END,
 		.val = {
 			.loc = {
 				.pos = {-0.386+0.071*t,-0.426+0.069*t,0.123-0.023*t,},
-				.sma = {0.05,0.05,0.05,},
+				.scale = {0.05,0.05,0.05,},
 				.axis = {0,0,1,},
 				.angle = 0,
 			},
@@ -361,7 +361,7 @@ elipsoid sphere12 = {
 				.atnf = 1,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -370,13 +370,13 @@ elipsoid sphere12 = {
 	},
 };
 
-elipsoid sphere13 = {
+ellipsoid sphere14 = {
 	domain domain0 = {
 		.len = T_END,
 		.val = {
 			.loc = {
 				.pos = {0.649+0.036*t,0.307+0.015*t,0.77+0.072*t,},
-				.sma = {0.05,0.05,0.05,},
+				.scale = {0.05,0.05,0.05,},
 				.axis = {0,0,1,},
 				.angle = 0,
 			},
@@ -386,7 +386,7 @@ elipsoid sphere13 = {
 				.atnf = 1,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -395,13 +395,13 @@ elipsoid sphere13 = {
 	},
 };
 
-elipsoid sphere14 = {
+ellipsoid sphere15 = {
 	domain domain0 = {
 		.len = T_END,
 		.val = {
 			.loc = {
 				.pos = {0.07-0.014*t,-0.01-0.047*t,-0.058-0.085*t,},
-				.sma = {0.05,0.05,0.05,},
+				.scale = {0.05,0.05,0.05,},
 				.axis = {0,0,1,},
 				.angle = 0,
 			},
@@ -411,7 +411,7 @@ elipsoid sphere14 = {
 				.atnf = 1,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -420,13 +420,13 @@ elipsoid sphere14 = {
 	},
 };
 
-elipsoid sphere15 = {
+ellipsoid sphere16 = {
 	domain domain0 = {
 		.len = T_END,
 		.val = {
 			.loc = {
 				.pos = {0.131+0.040*t,0.587-0.032*t,-0.271+0.021*t,},
-				.sma = {0.05,0.05,0.05,},
+				.scale = {0.05,0.05,0.05,},
 				.axis = {0,0,1,},
 				.angle = 0,
 			},
@@ -436,7 +436,7 @@ elipsoid sphere15 = {
 				.atnf = 1,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},

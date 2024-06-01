@@ -1,4 +1,4 @@
-version  = 0.5.6;
+version  = 0.5.7;
 
 #define SIZE 256
 #define T_END 1.0
@@ -26,7 +26,7 @@ cylinder shell = {
 		.val = {
 			.loc = {
 				.pos = {0,0,0},
-				.sma = {0.7,0.7,1.0,},
+				.scale = {0.7,0.7,1.0,},
 				.axis = {0,0,1,},
 				.angle = 0.0,
 			},
@@ -36,7 +36,7 @@ cylinder shell = {
 				.atnf = 1,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -51,7 +51,7 @@ cylinder shell_cut = {
 		.val = {
 			.loc = {
 				.pos = {0,0,0},
-				.sma = {0.68,0.68,1.0,},
+				.scale = {0.68,0.68,1.0,},
 				.axis = {0,0,1,},
 				.angle = 0.0,
 			},
@@ -61,7 +61,7 @@ cylinder shell_cut = {
 				.atnf = 0,
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {1,1,1,},
+					.scale = {1,1,1,},
 					.axis = {0.0,0.0,1,},
 					.angle = 0,
 				},
@@ -72,11 +72,11 @@ cylinder shell_cut = {
 
 cylinder fluid = {
 	domain domain0 = {
-		.len = T_END,
+		.len = T_END*0.4,
 		.val = {
 			.loc = {
-				.pos = {0.0,0.0,-1+t,},
-				.sma = {0.68,0.68,t,},
+				.pos = {0.0,0.0,-1+sqrt(t),},
+				.scale = {0.68,0.68,sqrt(t),},
 				.axis = {0,0,1,},
 				.angle = 0.0,
 			},
@@ -86,9 +86,52 @@ cylinder fluid = {
 				.atnf = 0.3,
 				.loc = {
 					.pos = {0,0,0,},
-					.sma = {1,1,1},
+					.scale = {1,1,1},
 					.axis = {0,0,1},
 					.angle = 0,
+				},
+			},
+		},
+	},
+	domain domain1 = {
+		.len = T_END*0.2,
+		.val = {
+			.loc = {
+				.pos = {0.0,0.0,-1+sqrt(T_END*0.4),},
+				.scale = {0.68,0.68,sqrt(T_END*0.4),},
+			},
+		},
+	},
+	domain domain2 = {
+		.len = T_END*0.4,
+		.val = {
+			.loc = {
+				.pos = {0.0,0.0,-1+(1.5*sqrt(t)-0.5),},
+				.scale = {0.68,0.68,1.5*sqrt(t)-0.5,},
+			},
+		},
+	},
+};
+
+cylinder matrix1 = {
+	domain domain0 = {
+		.len = T_END,
+		.val = {
+			.loc = {
+				.pos = {0,0,0},
+				.scale = {0.68,0.68,1.0,},
+				.axis = {0,0,1,},
+				.angle = 0.0,
+			},
+			.atn = {
+				.blend = MASK,
+				.fill = FILL_NOISE,
+				.atnf = min(1\,	100000000*(0.1+s)),
+				.loc = {
+					.pos = {0.0,0,0,},
+					.scale = {0.05,0.05,0.25,},
+					.axis = {0.656,0.33,-0.23,},
+					.angle = 0.425,
 				},
 			},
 		},
@@ -101,32 +144,7 @@ cylinder matrix2 = {
 		.val = {
 			.loc = {
 				.pos = {0,0,0},
-				.sma = {0.68,0.68,1.0,},
-				.axis = {0,0,1,},
-				.angle = 0.0,
-			},
-			.atn = {
-				.blend = MASK,
-				.fill = FILL_NOISE,
-				.atnf = min(1\,	100000000*(0.1+s)),
-				.loc = {
-					.pos = {0.0,0,0,},
-					.sma = {0.05,0.05,0.25,},
-					.axis = {0.656,0.33,-0.23,},
-					.angle = 0.425,
-				},
-			},
-		},
-	},
-};
-
-cylinder matrix = {
-	domain domain0 = {
-		.len = T_END,
-		.val = {
-			.loc = {
-				.pos = {0,0,0},
-				.sma = {0.68,0.68,1.0,},
+				.scale = {0.68,0.68,1.0,},
 				.axis = {0,0,1,},
 				.angle = 0.0,
 			},
@@ -136,7 +154,7 @@ cylinder matrix = {
 				.atnf = min(1\,	100000000*(0.1+s)),
 				.loc = {
 					.pos = {0.0,0,223.32,},
-					.sma = {0.07,0.07,0.23,},
+					.scale = {0.07,0.07,0.23,},
 					.axis = {-0.587,0.912,-.784,},
 					.angle = 0.765,
 				},
@@ -145,13 +163,13 @@ cylinder matrix = {
 	},
 };
 
-cylinder matrix = {
+cylinder matrix3 = {
 	domain domain0 = {
 		.len = T_END,
 		.val = {
 			.loc = {
 				.pos = {0,0,0},
-				.sma = {0.68,0.68,1.0,},
+				.scale = {0.68,0.68,1.0,},
 				.axis = {0,0,1,},
 				.angle = 0.0,
 			},
@@ -161,7 +179,7 @@ cylinder matrix = {
 				.atnf = min(1\,	100000000*(0.1+s)),
 				.loc = {
 					.pos = {0.0,0,0,},
-					.sma = {0.1,0.1,0.3,},
+					.scale = {0.1,0.1,0.3,},
 					.axis = {-0.214,0.231,1.23,},
 					.angle = 1.23,
 				},
